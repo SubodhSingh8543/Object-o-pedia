@@ -1,16 +1,15 @@
 import './App.css';
-import ProductPage from './Pages/ProductPage';
+import { useState } from 'react';
+import {  } from "module";
 import AdminNavbar from './Admin/Components/adminNavbar';
 import AllRoutes from './Components/AllRoutes';
-import { useState } from 'react';
+
 function App() {
   const [athenticated,setAuth] = useState(true);
 
   return (
     <div className="App">
- 
-       {athenticated?  <AdminNavbar/> : <AllRoutes/>}
-
+      {athenticated? <AdminNavbar/> : <AllRoutes/>}
     </div>
   );
 }
