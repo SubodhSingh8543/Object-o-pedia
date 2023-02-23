@@ -11,15 +11,23 @@ import { UserAuthContextProvider } from "./context/UserAuthContext";
 import Checkout from "./Pages/Checkout";
 import AdminNavbar from './Admin/Components/adminNavbar';
 import AllRoutes from './Components/AllRoutes';
+
+import Footer from './Components/Footer';
+
 import Cart from './Pages/Cart';
 import ProductPage from './Pages/ProductPage';
 import Payment from './Pages/Payment';
+
 
 function App() {
   const [athenticated,setAuth] = useState(false);
 
   return (
     <div className="App">
+
+     
+    
+
       {/* {athenticated? <AdminNavbar/> : <AllRoutes/>} */}
 
       {/* <AllRoutes/> */}
@@ -42,6 +50,7 @@ function App() {
               <Route path="/phonesignup" element={<PhoneSignUp />} />
             </Routes>
           </UserAuthContextProvider>
+
     </div>
   );
 }
