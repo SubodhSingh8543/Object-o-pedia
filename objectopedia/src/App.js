@@ -8,11 +8,12 @@ import Signup from "./Components/Signup";
 import PhoneSignUp from "./Components/PhoneSignUp";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import { UserAuthContextProvider } from "./context/UserAuthContext";
-
+import Checkout from "./Pages/Checkout";
 import AdminNavbar from './Admin/Components/adminNavbar';
 import AllRoutes from './Components/AllRoutes';
 import Cart from './Pages/Cart';
 import ProductPage from './Pages/ProductPage';
+import Payment from './Pages/Payment';
 
 function App() {
   const [athenticated,setAuth] = useState(false);
@@ -24,6 +25,8 @@ function App() {
       {/* <AllRoutes/> */}
       {/* <ProductPage/> */}
       {/* <Cart/> */}
+      {/* <Checkout />/ */}
+      {/* <Payment /> */}
       <UserAuthContextProvider>
             <Routes>
               <Route
