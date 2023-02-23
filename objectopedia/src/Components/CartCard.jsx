@@ -2,22 +2,23 @@ import { Box, Button, Image, Text } from "@chakra-ui/react";
 import React from "react";
 import { FaRegTrashAlt } from "react-icons/fa";
 
-const CartCard = () => {
+const CartCard = ({title,price,description,image}) => {
   return (
     <Box mb={'1rem'}>
+      
       <Box w={"60%"} m={"auto"} display={"flex"} gap={"2rem"}>
         <Box bg={"#f7f7f7"}>
-          <Image src="https://images.dailyobjects.com/marche/product-images/1103/frosted-hardshell-case-for-macbook-air-13-2022-images/Clear-Frosted-Hardshell-Case-for-Macbook-Air-13-2020-vw.png?tr=cm-pad_resize,v-2,w-134,h-164,dpr-1" />
+          <Image w={'80%'} src={image} />
         </Box>
         <Box
-          fontSize={"smaller"}
+          fontSize={"medium"}
           display={"flex"}
           flexDirection={"column"}
           gap={"2rem"}
         >
           <Box>
-            <Text>Frosted Hardshell Case for Macbook Air 13 2022</Text>
-            <Text fontWeight={'bold'} mt={"1.5"}>Rs.2199</Text>
+            <Text>{title}</Text>
+            <Text fontWeight={'bold'} mt={"1.5"}>Rs.{price}</Text>
           </Box>
           <Box
             fontSize={"xl"}

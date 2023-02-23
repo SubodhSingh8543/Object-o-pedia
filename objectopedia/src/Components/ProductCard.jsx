@@ -12,10 +12,16 @@ import {
    
   } from '@chakra-ui/react';
 import { FiHeart } from 'react-icons/fi';
+import { useSelector } from 'react-redux';
   
 export default function ProductCard({image,name,price,category}) {
-    return (
+ 
+  const loading = useSelector((store)=>store.productReducer.loading)
+ 
+  
+  return (
       <Center py={12}>
+        
         <Box
           role={'group'}
           p={6}

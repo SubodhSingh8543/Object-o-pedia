@@ -3,7 +3,9 @@ import * as types from "./product.types";
 const initState = {
     loading:false,
     error:false,
-    product:[]
+    product:[],
+    perPage:10,
+    activePage:1,
 }
 
 export const reducer = (state=initState,action)=>{
@@ -18,6 +20,9 @@ export const reducer = (state=initState,action)=>{
         case types.GET_PRODUCT_SUCCESS:{
             return {...state,product:action.payload,loading:false}
         }
+        case types.HANDLE_PAGE_CHANGE:{
+            return {...state,activePage:action.payload}
+          }
         default:{
             return state;
         }
