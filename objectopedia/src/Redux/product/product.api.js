@@ -1,11 +1,11 @@
 
 import axios from "axios";
 
-export const getProductsApi = async () => {
+export const getProductsApi = async (params) => {
   try {
     let response = await axios.get(
-      `https://outrageous-smock-fish.cyclic.app/products`,
-      
+      `https://dailyobjectsdatabase.onrender.com/products`,
+      params
     );
     return response.data;
   } catch (e) {

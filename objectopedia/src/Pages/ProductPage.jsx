@@ -1,60 +1,92 @@
 import ProductCard from "../Components/ProductCard";
 
-import {useDispatch, useSelector} from "react-redux"
+import {shallowEqual, useDispatch, useSelector} from "react-redux"
 import { useEffect } from "react";
 import { getProducts } from "../Redux/product/product.action";
 import { Box, Flex, Grid, GridItem, Show, Skeleton } from "@chakra-ui/react";
-import {Link} from "react-router-dom"
+import Pagination from "../Components/Pagination";
+import FilterAndSort from "../Components/FilterAndSort";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 
 const ProductPage = () => {
 
-    const products = useSelector((store)=>store.productReducer.product)
-    const loading = useSelector((store)=>store.productReducer.loading)
-    const dispatch = useDispatch();
+    const {products,activePage,loading,perPage} = useSelector((store)=>{
+      return {
+        products : store.productReducer.product,
+        loading : store.productReducer.loading,
+        perPage : store.productReducer.perPage,
+        activePage : store.productReducer.activePage
+      }
+    },shallowEqual)
     
+    const dispatch = useDispatch();
+
+    const [searchParams] = useSearchParams();
+    
+    const location = useLocation()
     
     useEffect(()=>{
-        if(products.length===0){
-        dispatch(getProducts())
+        if(products.length===0 || location){
+          const getProductsParams = {
+            params:{
+              category:searchParams.getAll("filter"),
+              _sort:"price",
+              _order:searchParams.get("sort")
+            }
+          }
+        dispatch(getProducts(getProductsParams))
         }
-    },[])
+    },[location.search]);
 
     return (
       <div>
         <Flex>
-        <Show >
-          <Box border="1px solid red" w="15%">
-            
-              <Box>This text appears only on screens 400px and smaller.</Box>
+           <Box w="25%" mt="8" display={{base:"none",md:"none",lg:"block"}}>
+           <FilterAndSort/>
+           </Box>
+           <Box margin={{base:"auto",md:"auto",lg:"auto"}}>
+            <Grid
+              templateColumns={{
+                base: "repeat(1, 1fr)",
+                md: "repeat(2, 1fr)",
+                lg: "repeat(4, 1fr)",
+              }}
+              ml={-4}
+              rowGap={-10}
+              columnGap={8}
+            >
+              {products.length > 0 &&
+                products
+                  .filter((_, i) => {
+                    return (
+                      i >= perPage * (activePage - 1) &&
+                      i < perPage * activePage
+                    );
+                  })
+                  .map((prod) => (
+                    
+                    <GridItem key={prod.id} m="-10px"> 
+                    
+                        <ProductCard
+                          key={prod.id}
+                          image={prod.image}
+                          desc={prod.description}
+                          name={prod.title}
+                          category={prod.category}
+                          price={prod.price}
+                        />
+                    </GridItem>
+                    
+                  ))}
+            </Grid>
             
           </Box>
-          </Show>
-          <Grid
-            templateColumns={{
-              base: "repeat(1, 1fr)",
-              md: "repeat(2, 1fr)",
-              lg: "repeat(4, 1fr)",
-            }}
-            ml={3}
-            rowGap={-10} columnGap={8}
-          >
-            {products.map((prod) => (
-              <GridItem key={prod.id} m="-10px">
-                <Skeleton isLoaded={!loading}>
-                  <ProductCard
-                    key={prod.id}
-                    image={prod.image}
-                    desc={prod.description}
-                    name={prod.title}
-                    category={prod.category}
-                    price={prod.price}
-                  />
-                </Skeleton>
-              </GridItem>
-            ))}
-          </Grid>
+          
         </Flex>
+        <Pagination />
+          
+        
       </div>
     );
 }
