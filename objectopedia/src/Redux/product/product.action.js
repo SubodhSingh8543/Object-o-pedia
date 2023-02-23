@@ -14,10 +14,15 @@ const getProduct =(data)=>{
     return({type:types.GET_PRODUCT_SUCCESS,payload:data})
 };
 
-export const getProducts = () =>async (dispatch)=>{
+export const handlePageChange = (payload)=>{
+    return ({type:types.HANDLE_PAGE_CHANGE,payload})
+}
+
+
+export const getProducts = (params) =>async (dispatch)=>{
       dispatch(productRequest())
       try{
-       let response = await getProductsApi();
+       let response = await getProductsApi(params);
        if(response){
         
           dispatch(getProduct(response))

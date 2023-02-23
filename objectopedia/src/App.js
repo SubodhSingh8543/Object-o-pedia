@@ -22,9 +22,9 @@ function App() {
       {/* {athenticated? <AdminNavbar/> : <AllRoutes/>} */}
 
       {/* <AllRoutes/> */}
-      {/* <ProductPage/> */}
+      <ProductPage/>
       {/* <Cart/> */}
-      <UserAuthContextProvider>
+      {/* <UserAuthContextProvider>
             <Routes>
               <Route
                 path="/home"
@@ -38,7 +38,7 @@ function App() {
               <Route path="/signup" element={<Signup />} />
               <Route path="/phonesignup" element={<PhoneSignUp />} />
             </Routes>
-          </UserAuthContextProvider>
+          </UserAuthContextProvider> */}
     </div>
   );
 }
