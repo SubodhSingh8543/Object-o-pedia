@@ -14,7 +14,6 @@ const getProduct =(data)=>{
     return({type:types.GET_PRODUCT_SUCCESS,payload:data})
 };
 
-
 export const getProducts = () =>async (dispatch)=>{
       dispatch(productRequest())
       try{
