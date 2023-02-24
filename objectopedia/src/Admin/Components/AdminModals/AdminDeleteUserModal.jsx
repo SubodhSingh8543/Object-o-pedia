@@ -13,14 +13,14 @@ import { MdOutlineDeleteOutline } from "react-icons/md";
 import { useDispatch } from 'react-redux';
 import { deleteAdminDataProduct, deleteUserAdminData } from '../../../Redux/AdminRedux/admin.action';
 
-export const AdminDeleteProductModal = ({id}) => {
+export const AdminRemoveUserModal = ({id}) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const cancelRef = React.useRef()
     const dispatch = useDispatch();
 
     const handleDelete = () => {
 
-       dispatch(deleteAdminDataProduct(id));
+       dispatch(deleteUserAdminData(id));
        onClose();
 
     }
@@ -38,7 +38,7 @@ export const AdminDeleteProductModal = ({id}) => {
           <AlertDialogOverlay>
             <AlertDialogContent>
               <AlertDialogHeader fontSize='lg' fontWeight='bold'>
-                Delete Product
+                Remove User
               </AlertDialogHeader>
   
               <AlertDialogBody>
@@ -50,7 +50,7 @@ export const AdminDeleteProductModal = ({id}) => {
                   Cancel
                 </Button>
                 <Button colorScheme='red' onClick={handleDelete} ml={3}>
-                  Delete
+                  Remove
                 </Button>
               </AlertDialogFooter>
             </AlertDialogContent>

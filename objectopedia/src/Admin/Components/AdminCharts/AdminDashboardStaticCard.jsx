@@ -8,7 +8,7 @@ import {
   VStack,
   useColorModeValue,
 } from "@chakra-ui/react";
-// import { FiUserPlus } from "react-icons/fi";
+import { FiUserPlus } from "react-icons/fi";
 const StatisticsCard = ({ title, logo, statistic }) => {
   return (
     <>
