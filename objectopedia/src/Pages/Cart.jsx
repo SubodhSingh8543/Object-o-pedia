@@ -13,6 +13,7 @@ import CartCard from "../Components/CartCard";
 import CartAccordion from "../Components/CartAccordion";
 import { useDispatch, useSelector } from "react-redux";
 
+
 import { deleteCart, getCart, updateCart } from "../Redux/Cart/cart.actions";
 
 import OrderSummary from "../Components/OrderSummary";
@@ -108,6 +109,7 @@ const Cart = () => {
         >
 
 
+
           {cartData &&
             cartData.map((ele) => {
               return (
@@ -120,6 +122,7 @@ const Cart = () => {
                 />
               );
             })}
+
 
         </Box>
         <Box

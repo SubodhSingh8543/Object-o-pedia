@@ -17,6 +17,7 @@ import Footer from './Components/Footer';
 import Cart from './Pages/Cart';
 import ProductPage from './Pages/ProductPage';
 import Payment from './Pages/Payment';
+import Nav from './Components/Navbar';
 
 
 function App() {
@@ -25,7 +26,7 @@ function App() {
   return (
     <div className="App">
 
-     
+     <Nav/>
     
 
       {athenticated? <AdminNavbar/> : <AllRoutes/>}
