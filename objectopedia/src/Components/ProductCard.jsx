@@ -13,17 +13,18 @@ import {
   } from '@chakra-ui/react';
 import { FiHeart } from 'react-icons/fi';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
   
-export default function ProductCard({image,name,price,category}) {
+export default function ProductCard({id,image,name,price,category}) {
  
   const loading = useSelector((store)=>store.productReducer.loading)
  
+  // console.log(id)
   
   return (
     <Center py={6}>
         
     <Box
-    
       role={'group'}
       p={6}
       maxW={'290px'}
@@ -33,6 +34,7 @@ export default function ProductCard({image,name,price,category}) {
       pos={'relative'}
       zIndex={1}
       >
+      <Link to={`/product/${id}`}>
       <Box
         rounded={'lg'}
         
@@ -49,6 +51,7 @@ export default function ProductCard({image,name,price,category}) {
           src={image}
         />
       </Box>
+      </Link>  
       <Stack pt={6}>
       <Text color={'gray.500'} fontSize={'10px'} textAlign="center" textTransform={'uppercase'}>
           {category}

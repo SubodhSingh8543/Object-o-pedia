@@ -86,7 +86,8 @@ const Cart = () => {
 
   return (
     <Box textAlign={"center"}>
-      <Image
+      <Image 
+       width={"100%"}
         src="https://images.dailyobjects.com/marche/assets/images/other/key-valentines-offer-banners-homepage-desktop.jpg?tr=cm-pad_crop,v-2,w-1233,dpr-1"
         alt="poster"
       />

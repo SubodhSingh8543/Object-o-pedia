@@ -1,5 +1,6 @@
 import { Box, Button, Divider, Text } from "@chakra-ui/react";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const OrderSummary = ({ totalItem, sum, couponDiscount }) => {
   const discount = Math.floor(sum / 5) + couponDiscount;
@@ -36,6 +37,7 @@ const OrderSummary = ({ totalItem, sum, couponDiscount }) => {
           <Text color={"orange.400"}>You saved Rs.{discount}</Text>
         </Box>
       </Box>
+      <Link to={"/checkout"}>
       <Button
         bg={"green.500"}
         variant={"link"}
@@ -45,6 +47,7 @@ const OrderSummary = ({ totalItem, sum, couponDiscount }) => {
       >
         CHECKOUT
       </Button>
+      </Link>
     </Box>
   );
 };

@@ -10,11 +10,11 @@ import {
   signInWithPhoneNumber,
 } from "firebase/auth";
 import { auth } from "../firebase";
-
-const userAuthContext = createContext();
+ const userAuthContext = createContext();
 
 export function UserAuthContextProvider({ children }) {
   const [user, setUser] = useState({});
+  // const [userId]
 
   function logIn(email, password) {
     return signInWithEmailAndPassword(auth, email, password);
@@ -27,6 +27,7 @@ export function UserAuthContextProvider({ children }) {
   }
   function googleSignIn() {
     const googleAuthProvider = new GoogleAuthProvider();
+    // console.log(auth.uid);
     return signInWithPopup(auth, googleAuthProvider);
   }
 
@@ -42,7 +43,7 @@ export function UserAuthContextProvider({ children }) {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
-      console.log("Auth", currentuser);
+      // console.log("Auth", currentuser);
       setUser(currentuser);
     });
 
@@ -50,6 +51,8 @@ export function UserAuthContextProvider({ children }) {
       unsubscribe();
     };
   }, []);
+
+  // console.log(user.uid)
 
   return (
     <userAuthContext.Provider

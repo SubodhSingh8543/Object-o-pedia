@@ -6,7 +6,7 @@ import { getProducts } from "../Redux/product/product.action";
 import { Box, Button, Flex, Grid, GridItem, Input, InputGroup, InputRightElement, Show, SimpleGrid, Skeleton } from "@chakra-ui/react";
 import Pagination from "../Components/Pagination";
 import FilterAndSort from "../Components/FilterAndSort";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
 import SearchProduct from "../Components/SearchProduct";
 
 const ProductPage = () => {
@@ -74,6 +74,7 @@ const ProductPage = () => {
                               name={prod.title}
                               category={prod.category}
                               price={prod.price}
+                              id={prod.id}
                             />
                     </Box>
                    

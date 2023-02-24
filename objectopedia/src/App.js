@@ -26,10 +26,8 @@ function App() {
   return (
     <div className="App">
 
-     <Nav/>
-    
 
-      {athenticated? <AdminNavbar/> : <AllRoutes/>}
+      {athenticated? <AdminNavbar/> :(<><Nav/><AllRoutes/></> )}
 
       {/* <AllRoutes/> */}
       {/* <ProductPage/> */}
@@ -57,7 +55,7 @@ function App() {
               <Route path="/payment" element={<Payment />} />
             </Routes>
 
-          </UserAuthContextProvider> */}
+      </UserAuthContextProvider> */}
 
 
     </div>

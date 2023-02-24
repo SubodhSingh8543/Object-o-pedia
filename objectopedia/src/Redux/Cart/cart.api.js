@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const getCartApi = async () => {
 	try {
-		let res = await axios.get(`http://localhost:8080/users/81bkuZFjGxdzlrsPm6r2Q4Za5xB3`);
+		let res = await axios.get(`https://dataobj.onrender.com/users/81bkuZFjGxdzlrsPm6r2Q4Za5xB3`);
 		let data = await res.data.cart;
 		return data;
 	} catch (e) {
@@ -12,7 +12,7 @@ export const getCartApi = async () => {
 
 export const deleteCartApi = async (newCart) => {
 	try {
-		let res = await axios.patch(`http://localhost:8080/users/81bkuZFjGxdzlrsPm6r2Q4Za5xB3`, {
+		let res = await axios.patch(`https://dataobj.onrender.com/users/81bkuZFjGxdzlrsPm6r2Q4Za5xB3`, {
 			cart: newCart
 		});
 		let data = await res.data.cart;
@@ -24,7 +24,7 @@ export const deleteCartApi = async (newCart) => {
 
 export const updateCartApi = async (newCart) => {
 	try {
-		let res = await axios.patch(`http://localhost:8080/users/81bkuZFjGxdzlrsPm6r2Q4Za5xB3`, {
+		let res = await axios.patch(`https://dataobj.onrender.com/users/81bkuZFjGxdzlrsPm6r2Q4Za5xB3`, {
 			cart: newCart
 		});
 		let data = await res.data.cart;
