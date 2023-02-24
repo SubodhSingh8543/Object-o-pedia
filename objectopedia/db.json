@@ -1,0 +1,44 @@
+{
+  "users": [
+    {
+      "profile": "",
+      "active": false,
+      "name": "Vivek Kumar",
+      "email": "vk640890@gmail.com",
+      "id": "81bkuZFjGxdzlrsPm6r2Q4Za5xB3",
+      "address": "",
+      "cart": [
+        {
+          "id": 3,
+          "title": "Cirque Phone and Pen Stand - (Blue)",
+          "price": 2799,
+          "qty": 4,
+          "category": "desks",
+          "description": "Accessorise your desk with the elegant CIRQUE Phone and Pen Stand. Made from natural ashwood, the phone stand can securely hold your phone while the pen stand is adequately spacious to hold a stack of pens, pencils and other small desk accessories. An impeccable match for any busy work desk.",
+          "image": "https://images.dailyobjects.com/marche/product-images/1702/cirque-phone-and-pen-stand-blue-images/Cirque-Phone-and-Pen-Stand-Blue-v.png?tr=cm-pad_resize,v-2,w-614,h-628,dpr-2,q-60"
+        },
+        {
+          "id": 4,
+          "title": "Arete Laptop Stand - (Ivory)",
+          "price": 2499,
+          "qty": 1,
+          "category": "desks",
+          "description": "Add superior stability, improved posture, comfort and lots of character to your desk with this precisely designed Arete Laptop Stand. The elevation of the aluminium panel ensures that your device is positioned at an angle to match your eye-level and support your working posture while its sleek and open design ensures effortless user experience. The durable matte-finish aluminium and smooth leatherite cladding gives the stand a clean modern expression to complement contemporary device designs.",
+          "image": "https://images.dailyobjects.com/marche/product-images/1702/arete-laptop-stand-ivory-images/Arete-Laptop-Stand-Ivory-v.png?tr=cm-pad_resize,v-2,w-614,h-628,dpr-2,q-60"
+        }
+      ],
+      "wishlist": [],
+      "orders": []
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

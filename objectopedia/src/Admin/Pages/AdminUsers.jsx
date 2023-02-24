@@ -29,96 +29,71 @@
 
 
 
-import { Box, Button, Flex, Heading, SimpleGrid, Table, TableCaption, TableContainer, Tbody, Td, Text, Tfoot, Th, Thead, Tr } from "@chakra-ui/react"
-import { useState } from "react";
+import { Box, Button, Flex, Heading, Image, SimpleGrid, Table, TableCaption, TableContainer, Tbody, Td, Text, Tfoot, Th, Thead, Tr } from "@chakra-ui/react"
+import { useEffect, useState } from "react";
 
 // AiFillEye
 
 import { FaRegEye } from "react-icons/fa";
 import { GrEdit } from "react-icons/gr";
 import { MdOutlineDeleteOutline } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserAdminData } from "../../Redux/AdminRedux/admin.action";
 import { AdminAddProductModal } from "../Components/AdminModals/AdminAddProductModal";
 import { AdminDeleteProductModal } from "../Components/AdminModals/AdminDeleteProductModal";
+import { AdminRemoveUserModal } from "../Components/AdminModals/AdminDeleteUserModal";
 import { AdminEditProductModal } from "../Components/AdminModals/AdminEditProductModal";
 import { AdminShowProductModal } from "../Components/AdminModals/AdminShowProductModal";
 // import AdminAddProductModal from "../Components/AdminModals/AdminAddProductModal";
 
 
 const AdminUsers = () => {
+    const data = useSelector((res) => res.AdminReducer.users);
+    const dispatch = useDispatch();
+
+    console.log(data);
+
+    useEffect(() => {
+        dispatch(getUserAdminData());
+    }, []);
+
 
     const [current, setCurrentPage] = useState(1);
 
     return (
         <>
-           <Flex flexWrap={"wrap"} margin={"30px"} justifyContent={"space-between"} >
-            <Heading>Users</Heading>
-            {/* <Button  fontWeight={"extrabold"} bg={"#b2f5ea"} border={"1px solid black"}> Add New Products</Button> */}
-             {/* <AdminAddProductModal/> */}
-           </Flex>
+            <Flex flexWrap={"wrap"} margin={"30px"} justifyContent={"space-between"} >
+                <Heading>Users</Heading>
+                {/* <Button  fontWeight={"extrabold"} bg={"#b2f5ea"} border={"1px solid black"}> Add New Products</Button> */}
+                {/* <AdminAddProductModal/> */}
+            </Flex>
             <Box border={"5px solid black"} maxHeight={"500px"} overflow="scroll">
                 <TableContainer>
-                <Heading textAlign={"start"} fontSize={"40px"} color={"grey"}>User Database</Heading>
+                    <Heading textAlign={"start"} fontSize={"40px"} color={"grey"}>User's Details</Heading>
                     <Table variant='striped' colorScheme='teal'>
-                         {/* <TableCaption>Imperial to metric conversion factors</TableCaption> */}
+                        {/* <TableCaption>Imperial to metric conversion factors</TableCaption> */}
                         <Thead bg={"black"} >
                             <Tr>
                                 <Th color="white">User Id</Th>
                                 <Th color="white">User Image</Th>
                                 <Th color="white">User name</Th>
-                                <Th color="white">Email</Th>
-                                <Th color="white">Gender</Th>
+                                <Th color="white">User Email</Th>
+                                <Th color="white">User Address</Th>
                                 <Th color="white">Action</Th>
                             </Tr>
                         </Thead>
                         <Tbody>
-                            <Tr>
-                                <Td>inches</Td>
-                                <Td>image</Td>
-                                <Td>millimetres (mm)</Td>
-                                <Td>25.4</Td>
-                                <Td>₹347</Td>
-                                <Td> <Flex gap={"10px"} > <AdminShowProductModal /> <AdminEditProductModal /> <AdminDeleteProductModal/> </Flex> </Td>
-                            </Tr>
-                            <Tr>
-                                <Td>inches</Td>
-                                <Td>image</Td>
-                                <Td>millimetres (mm)</Td>
-                                <Td>25.4</Td>
-                                <Td>₹347</Td>
-                                <Td> <Flex gap={"10px"} > <AdminShowProductModal /> <AdminEditProductModal /> <AdminDeleteProductModal/> </Flex> </Td>
-                            </Tr>
-                            <Tr>
-                                <Td>inches</Td>
-                                <Td>image</Td>
-                                <Td>millimetres (mm)</Td>
-                                <Td>25.4</Td>
-                                <Td>₹347</Td>
-                                <Td> <Flex gap={"10px"} > <AdminShowProductModal /> <AdminEditProductModal /> <AdminDeleteProductModal/> </Flex> </Td>
-                            </Tr>
-                            <Tr>
-                                <Td>inches</Td>
-                                <Td>image</Td>
-                                <Td>millimetres (mm)</Td>
-                                <Td>25.4</Td>
-                                <Td>₹347</Td>
-                                <Td> <Flex gap={"10px"} > <AdminShowProductModal /> <AdminEditProductModal /> <AdminDeleteProductModal/> </Flex> </Td>
-                            </Tr>
-                            <Tr>
-                                <Td>inches</Td>
-                                <Td>image</Td>
-                                <Td>millimetres (mm)</Td>
-                                <Td>25.4</Td>
-                                <Td>₹347</Td>
-                                <Td> <Flex gap={"10px"} > <AdminShowProductModal /> <AdminEditProductModal /> <AdminDeleteProductModal/> </Flex> </Td>
-                            </Tr>
-                            <Tr>
-                                <Td>inches</Td>
-                                <Td>image</Td>
-                                <Td>millimetres (mm)</Td>
-                                <Td>25.4</Td>
-                                <Td>₹347</Td>
-                                <Td> <Flex gap={"10px"} > <AdminShowProductModal /> <AdminEditProductModal /> <AdminDeleteProductModal/> </Flex> </Td>
-                            </Tr>
+                            {data?.map((el) => (
+                                <Tr key={el.id}>
+                                    <Td>{el.id}</Td>
+                                    <Td><Image width={"50px"} borderRadius={"50%"}  height={"50px"} src="data:image/png;base64,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" alt="error"/></Td>
+                                    <Td>{el.name}</Td>
+                                    <Td>{el.email}</Td>
+                                    <Td>{el.address}</Td>
+                                    <Td> <Flex gap={"10px"} > <AdminRemoveUserModal id={el.id} /> </Flex> </Td>
+                                </Tr>
+                            ))}
+
                         </Tbody>
                         {/* <Tfoot>
                         <Tr>
@@ -130,15 +105,16 @@ const AdminUsers = () => {
                     </Table>
                 </TableContainer>
             </Box>
-            <Flex  bg={"black"} color={"white"} justifyContent={"flex-end"}  >
-                {/* <Box > */}
-                    {/* {Array(10).fill("").map((el,i) => ( */}
-                        
-                        <Button isDisabled={current === 1}  _hover={{backgroundColor:"grey"}} bg={"black"} color={"white"}  cursor={"pointer"} onClick={() => setCurrentPage(current - 1)}>{"<"}</Button>
-                        <Button   _hover={{backgroundColor:"grey"}}  bg={"black"} color={"white"}>{". ."}{current}{". ."}</Button>
-                        <Button   _hover={{backgroundColor:"grey"}}  bg={"black"} color={"white"} cursor={"pointer"} onClick={() => setCurrentPage(current + 1)} marginRight={"20px"}>{">"}</Button>
-                    {/* ))} */}
-                {/* </Box> */}
+            <Flex bg={"black"} color={"white"} justifyContent={"flex-end"}  >
+                <Box height={"35px"} >
+                {/* {Array(10).fill("").map((el,i) => ( */}
+
+                {/* <Button isDisabled={current === 1} _hover={{ backgroundColor: "grey" }} bg={"black"} color={"white"} cursor={"pointer"} onClick={() => setCurrentPage(current - 1)}>{"<"}</Button>
+                <Button _hover={{ backgroundColor: "grey" }} bg={"black"} color={"white"}>{". ."}{current}{". ."}</Button>
+                <Button _hover={{ backgroundColor: "grey" }} bg={"black"} color={"white"} cursor={"pointer"} onClick={() => setCurrentPage(current + 1)} marginRight={"20px"}>{">"}</Button> */}
+                {/* ))} */}
+                </Box>
+
             </Flex>
         </>
     )

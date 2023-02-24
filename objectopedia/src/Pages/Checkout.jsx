@@ -6,12 +6,44 @@ import {
   Heading,
   Image,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import { AiOutlineArrowLeft } from "react-icons";
-import React from "react";
+import React, { useState } from "react";
 import AddressModal from "../Components/AddressModal";
+import OrderSummary from "../Components/OrderSummary";
+import { useSelector } from "react-redux";
 
 const Checkout = () => {
+  const cartData = useSelector((store) => store.cartReducer.cart);
+  const initSum = 0;
+  const toast = useToast();
+  let sum = cartData.reduce((acc, ele) => acc + ele.price * ele.qty, initSum);
+  const [couponDiscount, setCouponDiscount] = useState(0);
+  const availCoupon = (coupon) => {
+    if (coupon === "trinity") {
+      setCouponDiscount(Math.floor(sum / 10));
+      toast({
+        title: "Applied Successfully",
+        description: "You availed discount of 10%",
+        variant: "subtle",
+        status: "success",
+        position: "top-right",
+        duration: 3000,
+        isClosable: true,
+      });
+    } else {
+      toast({
+        title: "Not Valid",
+        description: "You have added wrong coupon",
+        variant: "subtle",
+        status: "error",
+        position: "top-right",
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+  };
   return (
     <Box>
       <Heading textAlign={"center"} mt={"4rem"} mb={"2rem"}>
@@ -55,47 +87,11 @@ const Checkout = () => {
           </Box>
         </Box>
         <Box h={{ md: "25rem" }} w={{ md: "50%" }}>
-          <Box w={"70%"} m={"auto"} mt={"1rem"} p={"1rem"}>
-            <Text fontSize={"xl"} fontWeight={"semibold"}>
-              ORDER SUMMARY
-            </Text>
-            <Box display={"flex"} justifyContent={"space-between"}>
-              <Box>
-                <Text>Item Total (2 items)</Text>
-                <Text color={"orange.400"}>Discount</Text>
-                <Text>Shipping</Text>
-              </Box>
-              <Box textAlign={"right"}>
-                <Text fontWeight={"bold"}>Rs.4198</Text>
-                <Text color={"orange.400"} fontWeight={"bold"}>
-                  Rs.1999
-                </Text>
-                <Text color={"orange.400"} fontWeight={"bold"}>
-                  FREE
-                </Text>
-              </Box>
-            </Box>
-            <Divider />
-            <Box display={"flex"} mt={"1rem"} justifyContent={"space-between"}>
-              <Box>
-                <Text fontWeight={"medium"}>Grand Total (2 items)</Text>
-                <Text>(Inclusive of Taxes)</Text>
-              </Box>
-              <Box textAlign={"right"}>
-                <Text fontWeight={"bold"}>Rs.2199</Text>
-                <Text color={"orange.400"}>You saved Rs.1999</Text>
-              </Box>
-            </Box>
-            <Button
-              bg={"green.500"}
-              variant={"link"}
-              h={"3rem"}
-              w={"100%"}
-              color={"white"}
-            >
-              CHECKOUT
-            </Button>
-          </Box>
+        <OrderSummary
+            totalItem={cartData.length}
+            sum={sum}
+            couponDiscount={couponDiscount}
+          />
         </Box>
       </Box>
     </Box>

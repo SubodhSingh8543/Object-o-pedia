@@ -1,4 +1,4 @@
-import { getCartApi } from "./cart.api"
+import { deleteCartApi, getCartApi, updateCartApi } from "./cart.api"
 import * as types from "./cart.types"
 
 const cartLoading = () => {
@@ -23,5 +23,25 @@ const getCart = () => async (dispatch) => {
 	}
 }
 
-export { getCart }
+const deleteCart = (newCart) => async (dispatch) => {
+	dispatch(cartLoading())
+	try {
+		let res = await deleteCartApi(newCart);
+		dispatch(getCartSuccess(res))
+	} catch (e) {
+		dispatch(cartError())
+	}
+}
+
+const updateCart = (newCart) => async (dispatch) => {
+	dispatch(cartLoading())
+	try {
+		let res = await updateCartApi(newCart);
+		dispatch(getCartSuccess(res))
+	} catch (e) {
+		dispatch(cartError())
+	}
+}
+
+export { getCart, deleteCart, updateCart }
 
