@@ -4,7 +4,7 @@ import CartCard from "../Components/CartCard";
 import CartAccordion from "../Components/CartAccordion";
 import { useDispatch, useSelector } from "react-redux";
 import { getCart } from "../Redux/Cart/cart.actions";
-import { data } from "../mockData";
+// import { data } from "../mockData";
 import OrderSummary from "../Components/OrderSummary";
 
 const Cart = () => {
@@ -40,11 +40,11 @@ const Cart = () => {
           overflow={{ md: "hidden" }}
           overflowY={{ md: "scroll" }}
         >
-          {
+          {/* {
         data.map(ele=>{
           return <CartCard key={ele.id} {...ele} />
         })
-      }
+      } */}
           
         </Box>
         <Box
