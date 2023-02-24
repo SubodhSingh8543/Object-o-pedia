@@ -43,7 +43,7 @@ const FilterAndSort = () => {
 
   return (
     <div style={{position:"sticky",top:"0px",bottom:"150px"}}>
-      <Box border="1px solid grey" borderRight="8px solid grey " width="80%"
+      <Box border="1px solid grey" borderRight="8px solid grey " width="90%"
     
   >
         <Heading color="gray.900" opacity="0.7">
@@ -61,7 +61,7 @@ const FilterAndSort = () => {
                   fontSize="2em"
                   textAlign="left"
                 >
-                  Filter
+                  Category
                 </Box>
                 <AccordionIcon />
               </AccordionButton>
@@ -69,8 +69,6 @@ const FilterAndSort = () => {
             <AccordionPanel pb={4} spacing={"3"}>
               <CheckboxGroup colorScheme="green" value={filterVal} onChange={handleFilter}>
                 <Stack spacing={[1, 5]} direction={["column"]}>
-                 
-                 <Text fontWeight="bold" textAlign="left">By Category</Text>
                  
                   <Checkbox color="#000000DE" value="desks">
                     Desks

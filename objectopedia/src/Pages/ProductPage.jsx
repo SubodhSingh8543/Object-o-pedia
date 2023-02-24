@@ -3,11 +3,11 @@ import ProductCard from "../Components/ProductCard";
 import {shallowEqual, useDispatch, useSelector} from "react-redux"
 import { useEffect } from "react";
 import { getProducts } from "../Redux/product/product.action";
-import { Box, Flex, Grid, GridItem, Show, Skeleton } from "@chakra-ui/react";
+import { Box, Button, Flex, Grid, GridItem, Input, InputGroup, InputRightElement, Show, SimpleGrid, Skeleton } from "@chakra-ui/react";
 import Pagination from "../Components/Pagination";
 import FilterAndSort from "../Components/FilterAndSort";
 import { useLocation, useSearchParams } from "react-router-dom";
-
+import SearchProduct from "../Components/SearchProduct";
 
 const ProductPage = () => {
 
@@ -41,22 +41,23 @@ const ProductPage = () => {
 
     return (
       <div>
+        <SearchProduct/>
         <Flex>
+
            <Box w="25%" mt="8" display={{base:"none",md:"none",lg:"block"}}>
            <FilterAndSort/>
            </Box>
-           <Box margin={{base:"auto",md:"auto",lg:"auto"}}>
-            <Grid
-              templateColumns={{
+           <Box margin={{base:"auto",md:"auto",lg:"auto"}} mt="12">
+           <SimpleGrid templateColumns={{
                 base: "repeat(1, 1fr)",
                 md: "repeat(2, 1fr)",
                 lg: "repeat(4, 1fr)",
               }}
               ml={-4}
-              rowGap={-10}
-              columnGap={8}
-            >
-              {products.length > 0 &&
+              rowGap={"-50px"}
+              columnGap={10}
+             >
+                {products.length > 0 &&
                 products
                   .filter((_, i) => {
                     return (
@@ -65,26 +66,24 @@ const ProductPage = () => {
                     );
                   })
                   .map((prod) => (
-                    
-                    <GridItem key={prod.id} m="-10px"> 
-                    
-                        <ProductCard
-                          key={prod.id}
-                          image={prod.image}
-                          desc={prod.description}
-                          name={prod.title}
-                          category={prod.category}
-                          price={prod.price}
-                        />
-                    </GridItem>
-                    
+                    <Box key={prod.id} m="-10px">
+                    <ProductCard
+                              key={prod.id}
+                              image={prod.image}
+                              desc={prod.description}
+                              name={prod.title}
+                              category={prod.category}
+                              price={prod.price}
+                            />
+                    </Box>
+                   
                   ))}
-            </Grid>
+            </SimpleGrid>
             
           </Box>
           
         </Flex>
-        <Pagination />
+        {products.length>10 && <Pagination />}
           
         
       </div>

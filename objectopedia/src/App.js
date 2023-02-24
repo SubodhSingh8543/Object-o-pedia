@@ -36,7 +36,7 @@ function App() {
 
       {/* <Checkout />/ */}
       {/* <Payment /> */}
-      <UserAuthContextProvider>
+      {/* <UserAuthContextProvider>
 
             <Routes>
               <Route
@@ -52,7 +52,7 @@ function App() {
               <Route path="/phonesignup" element={<PhoneSignUp />} />
             </Routes>
 
-          </UserAuthContextProvider>
+          </UserAuthContextProvider> */}
 
 
     </div>
