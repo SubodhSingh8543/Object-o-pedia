@@ -48,18 +48,24 @@ import {
         <chakra.h1
           textAlign={'center'}
           fontSize={'4xl'}
+        //   py={10}
           fontWeight={'bold'}>
             <Text>Welcone to object'o'pedia Admin Dashboard</Text>
         </chakra.h1>
          <chakra.h2  textAlign={'center'}
           fontSize={'4xl'}
+        //   py={50}
           fontWeight="light">Here is outcome of our services</chakra.h2>
           <br />
 
           <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 5, lg: 8 }}>
             <Card bg={"#edf2f6"} > <img src={img2} alt='error' /> </Card>
             <Card bg={"#edf2f6"} > < img src={img1} alt='error' /></Card>
-            <Card bg={"#edf2f6"} > <img src={img3} alt='error' /></Card> 
+            <Card bg={"#edf2f6"} > <img src={img3} alt='error' /></Card>
+           
+            {/* <Image src={img1} alt='error' /> */}
+            {/* <Image height="150px" width={"92%"} marginLeft={"2%"} src={img3} alt='error' /> */}
+            
           </SimpleGrid>
 
           <br />

@@ -13,6 +13,7 @@ import CartCard from "../Components/CartCard";
 import CartAccordion from "../Components/CartAccordion";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteCart, getCart, updateCart } from "../Redux/Cart/cart.actions";
+
 import OrderSummary from "../Components/OrderSummary";
 
 const Cart = () => {
@@ -104,6 +105,7 @@ const Cart = () => {
           overflow={{ md: "hidden" }}
           overflowY={{ md: "scroll" }}
         >
+
           {cartData &&
             cartData.map((ele) => {
               return (
@@ -116,6 +118,7 @@ const Cart = () => {
                 />
               );
             })}
+
         </Box>
         <Box
           w={{ md: "50%" }}
