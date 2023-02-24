@@ -31,8 +31,8 @@ function App() {
       {/* {athenticated? <AdminNavbar/> : <AllRoutes/>} */}
 
       {/* <AllRoutes/> */}
-      <ProductPage/>
-      {/* <Cart/> */}
+      {/* <ProductPage/> */}
+      <Cart/>
 
       {/* <Checkout />/ */}
       {/* <Payment /> */}
@@ -50,6 +50,9 @@ function App() {
               <Route path="/" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/phonesignup" element={<PhoneSignUp />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/checkout" element={<Checkout />} />
+              <Route path="/payment" element={<Payment />} />
             </Routes>
 
           </UserAuthContextProvider>

@@ -1,20 +1,84 @@
-import { Box, Button, Divider, Heading, Image, Text } from "@chakra-ui/react";
-import React, { useEffect } from "react";
+import {
+  Box,
+  Button,
+  Divider,
+  Heading,
+  Image,
+  Text,
+  Toast,
+  useToast,
+} from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
 import CartCard from "../Components/CartCard";
 import CartAccordion from "../Components/CartAccordion";
 import { useDispatch, useSelector } from "react-redux";
-import { getCart } from "../Redux/Cart/cart.actions";
-import { data } from "../mockData";
+import { deleteCart, getCart, updateCart } from "../Redux/Cart/cart.actions";
 import OrderSummary from "../Components/OrderSummary";
 
 const Cart = () => {
   const cartData = useSelector((store) => store.cartReducer.cart);
   const dispatch = useDispatch();
+  const initSum = 0;
+  const toast = useToast();
+  let sum = cartData.reduce((acc, ele) => acc + ele.price * ele.qty, initSum);
+  const [couponDiscount, setCouponDiscount] = useState(0);
+  const availCoupon = (coupon) => {
+    if (coupon === "trinity") {
+      setCouponDiscount(Math.floor(sum / 10));
+      toast({
+        title: "Applied Successfully",
+        description: "You availed discount of 10%",
+        variant: "subtle",
+        status: "success",
+        position: "top-right",
+        duration: 3000,
+        isClosable: true,
+      });
+    } else {
+      toast({
+        title: "Not Valid",
+        description: "You have added wrong coupon",
+        variant: "subtle",
+        status: "error",
+        position: "top-right",
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+  };
+
+  const deleteHandler = (id) => {
+    let newCart = cartData.filter((ele) => {
+      return ele.id !== id;
+    });
+    dispatch(deleteCart(newCart));
+    toast({
+      title: "Deleted Successfully",
+      description: "Product deleted from cart",
+      variant: "subtle",
+      status: "success",
+      position: "top-right",
+      duration: 3000,
+      isClosable: true,
+    });
+  };
+
+  const incHandler = (id) => {
+    let newCart = cartData.map((ele) => {
+      return ele.id === id ? { ...ele, qty: ++ele.qty } : ele;
+    });
+    dispatch(updateCart(newCart));
+  };
+
+  const decHandler = (id) => {
+    let newCart = cartData.map((ele) => {
+      return ele.id === id ? { ...ele, qty: --ele.qty } : ele;
+    });
+    dispatch(updateCart(newCart));
+  };
 
   useEffect(() => {
-    if (cartData.length === 0) {
-      dispatch(getCart());
-    }
+    dispatch(getCart());
   }, []);
 
   return (
@@ -40,12 +104,18 @@ const Cart = () => {
           overflow={{ md: "hidden" }}
           overflowY={{ md: "scroll" }}
         >
-          {
-        data.map(ele=>{
-          return <CartCard key={ele.id} {...ele} />
-        })
-      }
-          
+          {cartData &&
+            cartData.map((ele) => {
+              return (
+                <CartCard
+                  key={ele.id}
+                  deleteHandler={deleteHandler}
+                  incHandler={incHandler}
+                  decHandler={decHandler}
+                  {...ele}
+                />
+              );
+            })}
         </Box>
         <Box
           w={{ md: "50%" }}
@@ -53,9 +123,13 @@ const Cart = () => {
           overflow={{ md: "hidden" }}
           overflowY={{ md: "scroll" }}
         >
-          <CartAccordion />
+          <CartAccordion availCoupon={availCoupon} />
           <Divider />
-          <OrderSummary />
+          <OrderSummary
+            totalItem={cartData.length}
+            sum={sum}
+            couponDiscount={couponDiscount}
+          />
         </Box>
       </Box>
     </Box>
