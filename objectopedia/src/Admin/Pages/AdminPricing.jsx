@@ -42,54 +42,16 @@ const AdminPricing = () => {
                             </Tr>
                         </Thead>
                         <Tbody>
+                            
                             <Tr>
                                 <Td>inches</Td>
                                 <Td>image</Td>
                                 <Td>millimetres (mm)</Td>
                                 <Td>25.4</Td>
                                 <Td>₹347</Td>
-                                <Td> <Flex gap={"10px"} > <AdminShowProductModal /> <AdminEditProductModal /> <AdminDeleteProductModal/> </Flex> </Td>
+                                {/* <Td> <Flex gap={"10px"} > <AdminShowProductModal /> <AdminEditProductModal /> <AdminDeleteProductModal/> </Flex> </Td> */}
                             </Tr>
-                            <Tr>
-                                <Td>inches</Td>
-                                <Td>image</Td>
-                                <Td>millimetres (mm)</Td>
-                                <Td>25.4</Td>
-                                <Td>₹347</Td>
-                                <Td> <Flex gap={"10px"} > <AdminShowProductModal /> <AdminEditProductModal /> <AdminDeleteProductModal/> </Flex> </Td>
-                            </Tr>
-                            <Tr>
-                                <Td>inches</Td>
-                                <Td>image</Td>
-                                <Td>millimetres (mm)</Td>
-                                <Td>25.4</Td>
-                                <Td>₹347</Td>
-                                <Td> <Flex gap={"10px"} > <AdminShowProductModal /> <AdminEditProductModal /> <AdminDeleteProductModal/> </Flex> </Td>
-                            </Tr>
-                            <Tr>
-                                <Td>inches</Td>
-                                <Td>image</Td>
-                                <Td>millimetres (mm)</Td>
-                                <Td>25.4</Td>
-                                <Td>₹347</Td>
-                                <Td> <Flex gap={"10px"} > <AdminShowProductModal /> <AdminEditProductModal /> <AdminDeleteProductModal/> </Flex> </Td>
-                            </Tr>
-                            <Tr>
-                                <Td>inches</Td>
-                                <Td>image</Td>
-                                <Td>millimetres (mm)</Td>
-                                <Td>25.4</Td>
-                                <Td>₹347</Td>
-                                <Td> <Flex gap={"10px"} > <AdminShowProductModal /> <AdminEditProductModal /> <AdminDeleteProductModal/> </Flex> </Td>
-                            </Tr>
-                            <Tr>
-                                <Td>inches</Td>
-                                <Td>image</Td>
-                                <Td>millimetres (mm)</Td>
-                                <Td>25.4</Td>
-                                <Td>₹347</Td>
-                                <Td> <Flex gap={"10px"} > <AdminShowProductModal /> <AdminEditProductModal /> <AdminDeleteProductModal/> </Flex> </Td>
-                            </Tr>
+                           
                         </Tbody>
                         {/* <Tfoot>
                         <Tr>

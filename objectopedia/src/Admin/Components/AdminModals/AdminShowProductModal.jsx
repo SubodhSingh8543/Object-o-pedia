@@ -16,7 +16,7 @@ import {
   import { FaRegEye } from "react-icons/fa";
 
 
-export const AdminShowProductModal = () => {
+export const AdminShowProductModal = ({el}) => {
 
     const { isOpen, onOpen, onClose } = useDisclosure();
     
@@ -31,14 +31,15 @@ export const AdminShowProductModal = () => {
             <ModalHeader textAlign={"center"}>Product Detail</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
-              <Flex>
-                <Box border={"2px solid black"} >
-                  <Image src='https://png.pngitem.com/pimgs/s/111-1117169_clipart-of-chota-bheem-hd-png-download.png' alt='error'/>
+              {/* <Lorem count={2} /> */}
+              <Flex justifyContent={"space-between"} alignItems={"center"}>
+                <Box  >
+                  <Image width={"300px"} src={el.image} alt='error'/>
                 </Box>
-                <Box border={"2px solid red"}>
-                    <Text>Title: ProductTitle</Text>
-                    <Text>Category: Category</Text>
-                    <Text>Price: Price</Text>
+                <Box >
+                    <Text><b>Title:</b> {el.title}</Text>
+                    <Text><b>Category:</b> {el.category}</Text>
+                    <Text><b>Price:</b> {el.price}</Text>
                 </Box>
               </Flex>
             </ModalBody>

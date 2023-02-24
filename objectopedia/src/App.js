@@ -20,7 +20,7 @@ import Payment from './Pages/Payment';
 
 
 function App() {
-  const [athenticated,setAuth] = useState(false);
+  const [athenticated,setAuth] = useState(true);
 
   return (
     <div className="App">
@@ -28,15 +28,15 @@ function App() {
      
     
 
-      {/* {athenticated? <AdminNavbar/> : <AllRoutes/>} */}
+      {athenticated? <AdminNavbar/> : <AllRoutes/>}
 
       {/* <AllRoutes/> */}
-      <ProductPage/>
+      {/* <ProductPage/> */}
       {/* <Cart/> */}
 
       {/* <Checkout />/ */}
       {/* <Payment /> */}
-      <UserAuthContextProvider>
+      {/* <UserAuthContextProvider>
 
             <Routes>
               <Route
@@ -52,7 +52,7 @@ function App() {
               <Route path="/phonesignup" element={<PhoneSignUp />} />
             </Routes>
 
-          </UserAuthContextProvider>
+          </UserAuthContextProvider> */}
 
 
     </div>
