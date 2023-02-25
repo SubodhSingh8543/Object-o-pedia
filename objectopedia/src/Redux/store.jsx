@@ -16,7 +16,7 @@ const rootReducer = combineReducers({
   AdminReducer,
 
   AuthReducer,
-  SingleProductReducer
+  SingleProductReducer,
 
   checkoutReducer,
 

@@ -72,7 +72,8 @@ export default function SingleProductPage() {
 
     const addCartItems = async () => {
         if (user.uid) {
-            let newData = [...cartData, data];
+
+            let newData = [...cartData,{ ...data,qty:1}];
             let newPayLoad = { ...user, cart: newData };
             try {
                 let res = await axios.patch(`https://dataobj.onrender.com/users/${user.uid}`, newPayLoad);

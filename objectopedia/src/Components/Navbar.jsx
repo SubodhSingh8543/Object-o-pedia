@@ -49,8 +49,8 @@ console.log(singleUser);
   
   return (
 
-    <div style={{position:"sticky",top:"0%",zIndex:"99"}}>                           
-    <Box  borderBottom="1px solid #56B7C3">
+    <Box style={{position:"sticky",top:"0%",zIndex:"99",width:"100%"}}>                           
+    <Box  >
 
       <Flex
         // position={"fixed"}
@@ -63,7 +63,7 @@ console.log(singleUser);
         marginBottom={5}
         width={"100%"}
         borderStyle={"solid"}
-        borderColor={useColorModeValue("gray.200", "gray.900")}
+        borderColor={useColorModeValue("#56B7C3", "gray.900")}
         align={"center"}>
         <Flex
           flex={{ base: 1, md: "auto" }}
@@ -79,7 +79,7 @@ console.log(singleUser);
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: "flex-start", md: "start" }}>
           <RouterLink to={"/"}>
-            <Image ml={{base:"-5"}} width="90px" height="50px" src={logo} alt="" />
+            <Image ml={{base:"-5",lg:"4"}} width="90px" height="50px" src={logo} alt="" />
           </RouterLink>
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />
@@ -125,7 +125,7 @@ console.log(singleUser);
 
     </Box>
     <SearchProduct searchStatus={clicked}/>
-    </div>
+    </Box>
     
     
 
@@ -418,7 +418,7 @@ const NAV_ITEMS = [
       {
         label: "Orders",
         // subLabel: "Trending Design to inspire you",
-        href: "/myorders",
+        // href: "/myorders",
       },
       {
         label: "Wish List",

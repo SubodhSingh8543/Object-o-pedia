@@ -10,6 +10,7 @@ import AllRoutes from './Components/AllRoutes';
 import Nav from './Components/Navbar';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginAdminSideFunction } from './Redux/auth/auth.action';
+import Footer from './Components/Footer';
 
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
     <div className="App">
 
 
-      {athenticated === true ? <AdminNavbar/> :(<><Nav/><AllRoutes/></> )};
+      {athenticated === true ? <AdminNavbar/> :(<><Nav/><AllRoutes/> <Footer/> </> )};
 
     </div>
   );

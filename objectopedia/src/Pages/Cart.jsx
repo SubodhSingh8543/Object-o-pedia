@@ -11,6 +11,7 @@ import CartAccordion from "../Components/CartAccordion";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteCart, getCart, updateCart } from "../Redux/Cart/cart.actions";
 import OrderSummary from "../Components/OrderSummary";
+import { useUserAuth } from "../context/UserAuthContext";
 
 const Cart = () => {
   const cartData = useSelector((store) => store.cartReducer.cart);
@@ -20,6 +21,8 @@ const Cart = () => {
   const toast = useToast();
   let sum = cartData.reduce((acc, ele) => acc + ele.price * ele.qty, initSum);
   const [couponDiscount, setCouponDiscount] = useState(0);
+  const { user } = useUserAuth();
+ 
   
   const availCoupon = (coupon) => {
     if (coupon === "trinity") {
@@ -50,8 +53,8 @@ const Cart = () => {
     let newCart = cartData.filter((ele) => {
       return ele.id !== id;
     });
-    if (singleUserData) {
-      dispatch(deleteCart(newCart, singleUserData.id));
+    if (user?.uid) {
+      dispatch(deleteCart(newCart, user?.uid));
     }
     toast({
       title: "Deleted Successfully",
@@ -68,8 +71,8 @@ const Cart = () => {
     let newCart = cartData.map((ele) => {
       return ele.id === id ? { ...ele, qty: ++ele.qty } : ele;
     });
-    if (singleUserData) {
-      dispatch(updateCart(newCart, singleUserData.id));
+    if (user?.uid) {
+      dispatch(updateCart(newCart, user?.uid));
     }
   };
 
@@ -77,14 +80,14 @@ const Cart = () => {
     let newCart = cartData.map((ele) => {
       return ele.id === id ? { ...ele, qty: --ele.qty } : ele;
     });
-    if (singleUserData) {
-      dispatch(updateCart(newCart, singleUserData.id));
+    if (user?.uid) {
+      dispatch(updateCart(newCart, user?.uid));
     }
   };
 
   useEffect(() => {
-    if (singleUserData) {
-      dispatch(getCart(singleUserData.id));
+    if (user?.uid) {
+      dispatch(getCart(user?.uid));
     }
   }, []);
 

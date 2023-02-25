@@ -24,7 +24,8 @@ const HomePage = () => {
 
 
    useEffect(() => {
-    // if(user?.uid){
+    if(user?.uid){
+    
       dispatch(getUsersData());
 
       setUserId(user?.uid);
@@ -149,7 +150,7 @@ const HomePage = () => {
         src="https://images.dailyobjects.com/marche/assets/images/other/corporate-gifting-desktops.jpg?tr=cm-pad_crop,v-2,dpr-1"
       />
       <OurStory/>
-           <Footer/>
+           {/* <Footer/> */}
         </div>
     )
 }
