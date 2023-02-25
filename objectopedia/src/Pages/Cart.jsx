@@ -1,30 +1,26 @@
 import {
   Box,
-  Button,
   Divider,
   Heading,
   Image,
-  Text,
-  Toast,
   useToast,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import CartCard from "../Components/CartCard";
 import CartAccordion from "../Components/CartAccordion";
 import { useDispatch, useSelector } from "react-redux";
-
-
 import { deleteCart, getCart, updateCart } from "../Redux/Cart/cart.actions";
-
 import OrderSummary from "../Components/OrderSummary";
 
 const Cart = () => {
   const cartData = useSelector((store) => store.cartReducer.cart);
+  const singleUserData = useSelector((res) => res.AuthReducer.singleUser);
   const dispatch = useDispatch();
   const initSum = 0;
   const toast = useToast();
   let sum = cartData.reduce((acc, ele) => acc + ele.price * ele.qty, initSum);
   const [couponDiscount, setCouponDiscount] = useState(0);
+  
   const availCoupon = (coupon) => {
     if (coupon === "trinity") {
       setCouponDiscount(Math.floor(sum / 10));
@@ -54,7 +50,9 @@ const Cart = () => {
     let newCart = cartData.filter((ele) => {
       return ele.id !== id;
     });
-    dispatch(deleteCart(newCart));
+    if (singleUserData) {
+      dispatch(deleteCart(newCart, singleUserData.id));
+    }
     toast({
       title: "Deleted Successfully",
       description: "Product deleted from cart",
@@ -70,24 +68,30 @@ const Cart = () => {
     let newCart = cartData.map((ele) => {
       return ele.id === id ? { ...ele, qty: ++ele.qty } : ele;
     });
-    dispatch(updateCart(newCart));
+    if (singleUserData) {
+      dispatch(updateCart(newCart, singleUserData.id));
+    }
   };
 
   const decHandler = (id) => {
     let newCart = cartData.map((ele) => {
       return ele.id === id ? { ...ele, qty: --ele.qty } : ele;
     });
-    dispatch(updateCart(newCart));
+    if (singleUserData) {
+      dispatch(updateCart(newCart, singleUserData.id));
+    }
   };
 
   useEffect(() => {
-    dispatch(getCart());
+    if (singleUserData) {
+      dispatch(getCart(singleUserData.id));
+    }
   }, []);
 
   return (
     <Box textAlign={"center"}>
-      <Image 
-       width={"100%"}
+      <Image
+        width={"100%"}
         src="https://images.dailyobjects.com/marche/assets/images/other/key-valentines-offer-banners-homepage-desktop.jpg?tr=cm-pad_crop,v-2,w-1233,dpr-1"
         alt="poster"
       />
@@ -108,9 +112,6 @@ const Cart = () => {
           overflow={{ md: "hidden" }}
           overflowY={{ md: "scroll" }}
         >
-
-
-
           {cartData &&
             cartData.map((ele) => {
               return (
@@ -123,8 +124,6 @@ const Cart = () => {
                 />
               );
             })}
-
-
         </Box>
         <Box
           w={{ md: "50%" }}

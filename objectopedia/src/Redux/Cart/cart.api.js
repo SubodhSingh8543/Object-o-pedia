@@ -1,8 +1,8 @@
 import axios from "axios";
 
-export const getCartApi = async () => {
+export const getCartApi = async (id) => {
 	try {
-		let res = await axios.get(`https://dataobj.onrender.com/users/81bkuZFjGxdzlrsPm6r2Q4Za5xB3`);
+		let res = await axios.get(`https://dataobj.onrender.com/users/${id}`);
 		let data = await res.data.cart;
 		return data;
 	} catch (e) {
@@ -10,9 +10,9 @@ export const getCartApi = async () => {
 	}
 }
 
-export const deleteCartApi = async (newCart) => {
+export const deleteCartApi = async (newCart,id) => {
 	try {
-		let res = await axios.patch(`https://dataobj.onrender.com/users/81bkuZFjGxdzlrsPm6r2Q4Za5xB3`, {
+		let res = await axios.patch(`https://dataobj.onrender.com/users/${id}`, {
 			cart: newCart
 		});
 		let data = await res.data.cart;
@@ -22,9 +22,9 @@ export const deleteCartApi = async (newCart) => {
 	}
 }
 
-export const updateCartApi = async (newCart) => {
+export const updateCartApi = async (newCart,id) => {
 	try {
-		let res = await axios.patch(`https://dataobj.onrender.com/users/81bkuZFjGxdzlrsPm6r2Q4Za5xB3`, {
+		let res = await axios.patch(`https://dataobj.onrender.com/users/${id}`, {
 			cart: newCart
 		});
 		let data = await res.data.cart;

@@ -1,10 +1,17 @@
 import { Box, Button, Divider, Text } from "@chakra-ui/react";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const OrderSummary = ({ totalItem, sum, couponDiscount }) => {
   const discount = Math.floor(sum / 5) + couponDiscount;
   const GT = sum - discount - couponDiscount;
+  const location = useLocation();
+  let path = "";
+  if (location.pathname === "/cart") {
+    path = "/checkout";
+  } else if (location.pathname === "/checkout") {
+    path = "/payment";
+  }
   return (
     <Box w={"70%"} m={"auto"} mt={"1rem"} p={"1rem"}>
       <Text fontSize={"xl"} fontWeight={"semibold"}>
@@ -37,16 +44,18 @@ const OrderSummary = ({ totalItem, sum, couponDiscount }) => {
           <Text color={"orange.400"}>You saved Rs.{discount}</Text>
         </Box>
       </Box>
-      <Link to={"/checkout"}>
-      <Button
-        bg={"green.500"}
-        variant={"link"}
-        h={"3rem"}
-        w={"100%"}
-        color={"white"}
-      >
-        CHECKOUT
-      </Button>
+      <Link to={path}>
+        {location.pathname !== "/payment" ? (
+          <Button
+            bg={"green.500"}
+            variant={"link"}
+            h={"3rem"}
+            w={"100%"}
+            color={"white"}
+          >
+            CHECKOUT
+          </Button>
+        ) : null}
       </Link>
     </Box>
   );

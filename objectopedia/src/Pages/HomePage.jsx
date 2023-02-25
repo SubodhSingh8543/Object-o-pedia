@@ -11,14 +11,14 @@ const HomePage = () => {
    const dispatch = useDispatch();
 //    const [userId,setUserId] = useState("");
 
-   console.log(user);
+  //  console.log(user);
 
    useEffect(() => {
-    if(user?.uid){
+    // if(user?.uid){
       dispatch(getUsersData());
     //   setUserId(user?.uid);
-      findUser(user?.uid)
-    } 
+      findUser(user.uid)
+    // } 
    },[])
 
    const findUser = (id) => {
@@ -35,21 +35,22 @@ const HomePage = () => {
         wishlist: [],
         orders: []
       }
-
       for(let i=0; i<data.length; i++){
-          if(data[i].id === id){
-             flag = true;
-             break;
-          }
-       }
-
-       if(flag === true){
+        if(data[i].id === id){
+          flag = true;
+          break;
+        }
+      }
+      
+      if(flag === true){
         dispatch(getSingleUserData(id));
         console.log("exist")
-       }else{
+        console.log(singleUserData);
+      }else{
         dispatch(postSingleUserData(userObject));
+        console.log(data);
         console.log("not exist")
-       }  
+       }
    }
 
 
