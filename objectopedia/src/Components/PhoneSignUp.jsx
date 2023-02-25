@@ -5,7 +5,7 @@ import { Button } from "react-bootstrap";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import { useUserAuth } from "../context/UserAuthContext";
-
+import { Container, Row, Col } from "react-bootstrap";
 const PhoneSignUp = () => {
   const [error, setError] = useState("");
   const [number, setNumber] = useState("");
@@ -44,6 +44,9 @@ const PhoneSignUp = () => {
 
   return (
     <>
+      <Container style={{ width: "400px" ,boxShadow:" rgba(0, 0, 0, 0.24) 0px 3px 8px"}}>
+          <Row>
+            <Col>
       <div className="p-4 box">
         <h2 className="mb-3">Please Enter Mobile Number</h2>
         {error && <Alert variant="danger">{error}</Alert>}
@@ -58,7 +61,7 @@ const PhoneSignUp = () => {
             <div id="recaptcha-container"></div>
           </Form.Group>
           <div className="button-right">
-            <Link to="/">
+            <Link to="/login">
               <Button variant="secondary">Cancel</Button>
             </Link>
             &nbsp;
@@ -86,7 +89,10 @@ const PhoneSignUp = () => {
             </Button>
           </div>
         </Form>
-      </div>
+            </div>
+            </Col>
+          </Row>
+        </Container>
     </>
   );
 };

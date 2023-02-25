@@ -21,7 +21,7 @@ import Nav from './Components/Navbar';
 
 
 function App() {
-  const [athenticated,setAuth] = useState(true);
+  const [athenticated,setAuth] = useState(false);
 
   return (
     <div className="App">
