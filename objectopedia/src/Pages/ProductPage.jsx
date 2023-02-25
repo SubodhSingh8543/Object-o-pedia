@@ -41,19 +41,17 @@ const ProductPage = () => {
 
     return (
       <div>
-        <SearchProduct/>
-        <Flex>
+        <Flex >
 
-           <Box w="25%" mt="8" display={{base:"none",md:"none",lg:"block"}}>
+           <Box w="25%" mt="4" display={{base:"none",md:"none",lg:"block"}}>
            <FilterAndSort/>
            </Box>
-           <Box margin={{base:"auto",md:"auto",lg:"auto"}} mt="12">
+           <Box margin={{base:"auto",md:"auto",lg:"auto"}} mt={{base:"2",md:"5"}}>
            <SimpleGrid templateColumns={{
                 base: "repeat(1, 1fr)",
                 md: "repeat(2, 1fr)",
                 lg: "repeat(4, 1fr)",
               }}
-              ml={-4}
               rowGap={"-50px"}
               columnGap={10}
              >

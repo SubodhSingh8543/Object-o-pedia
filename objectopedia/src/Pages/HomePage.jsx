@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 import { useUserAuth } from "../context/UserAuthContext";
 import { getSingleUserData, getUsersData, postSingleUserData } from "../Redux/auth/auth.action";
 import { Box, Heading, Image } from "@chakra-ui/react";
@@ -62,6 +63,7 @@ const HomePage = () => {
         console.log("not exist")
        }
    }
+   
 
 
 

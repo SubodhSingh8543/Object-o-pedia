@@ -43,11 +43,12 @@ const Pagination = () => {
       return (
         <Button 
           key={i}
-          mx={{base:"1",md:"4",lg:"2"}}
+          mx={{base:"1",md:"3",lg:"3"}}
+          ml={{md:"5"}}
           onClick={() => handlePage(i + 1)}
           color={currentPage === i + 1 && "#FFFFFF"}
           borderRadius={currentPage === i + 1 && "50%"}
-          bg={currentPage === i + 1 && "#718096"}
+          bg={currentPage === i + 1 && "#56B7C3"}
         >
           {i + 1}
         </Button>
@@ -61,7 +62,7 @@ const Pagination = () => {
         <Box >
         {currentPage !== 1 && (
         <Button 
-          bg="#4A5568"
+          bg="#56B7C3"
           color="#FFFFFF"
           onClick={() => handlePage(currentPage - 1)}
         >
@@ -76,7 +77,7 @@ const Pagination = () => {
       {currentPage !== totalPages && (
         <Button
           
-          bg="#4A5568"
+          bg="#56B7C3"
           color="#FFFFFF"
           onClick={() => handlePage(currentPage + 1)}
         >
