@@ -32,14 +32,18 @@ export default function Nav() {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
+    <div style={{position:"sticky",top:"0%",zIndex:"99"}}>                           
     <Box>
       <Flex
+        // position={"fixed"}
         bg={useColorModeValue("white", "gray.800")}
         color={useColorModeValue("gray.600", "white")}
         minH={"60px"}
         py={{ base: 2 }}
         px={{ base: 4 }}
         borderBottom={1}
+        marginBottom={5}
+        width={"100%"}
         borderStyle={"solid"}
         borderColor={useColorModeValue("gray.200", "gray.900")}
         align={"center"}>
@@ -93,7 +97,8 @@ export default function Nav() {
       <Collapse in={isOpen} animateOpacity>
         <MobileNav />
       </Collapse>
-    </Box>
+      </Box>
+        </div>
   );
 }
 
