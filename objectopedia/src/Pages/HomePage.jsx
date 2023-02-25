@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 import { useUserAuth } from "../context/UserAuthContext";
 import { getSingleUserData, getUsersData, postSingleUserData } from "../Redux/auth/auth.action";
 
@@ -11,7 +12,7 @@ const HomePage = () => {
    const dispatch = useDispatch();
 //    const [userId,setUserId] = useState("");
 
-   console.log(user);
+  //  console.log(user);
 
    useEffect(() => {
     if(user?.uid){
@@ -51,6 +52,7 @@ const HomePage = () => {
         console.log("not exist")
        }  
    }
+   
 
 
 

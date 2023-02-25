@@ -4,7 +4,7 @@ const initState = {
     loading:false,
     error:false,
     product:[],
-    perPage:10,
+    perPage:12,
     activePage:1,
 }
 

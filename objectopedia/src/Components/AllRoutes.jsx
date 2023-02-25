@@ -11,6 +11,7 @@ import ProductPage from "../Pages/ProductPage";
 import SingleProductPage from "../Pages/SingleProductPage";
 import Login from "./Login";
 import PhoneSignUp from "./PhoneSignUp";
+import ProtectedRoute from "./ProtectedRoute";
 import Signup from "./Signup";
 
 const AllRoutes = () => {
@@ -26,7 +27,7 @@ const AllRoutes = () => {
       < Route path = "/signup" element = {< Signup />} />
       < Route path = "/checkout" element = {< Checkout />} />
       < Route path = "/phonesignup" element = {< PhoneSignUp />} />
-      < Route path = "/cart" element = {< Cart />} />
+      < Route path = "/cart" element = {<ProtectedRoute>< Cart /></ProtectedRoute>} />
       < Route path = "/payment" element = {< Payment />} />
       < Route path = "/myorders" element = {< MyOrders />} />
     </Routes >

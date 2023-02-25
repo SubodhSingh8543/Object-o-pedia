@@ -14,6 +14,7 @@ import {
   PopoverContent,
   useColorModeValue,
   useDisclosure,
+  useColorMode,
 } from "@chakra-ui/react";
 import logo from "../Components/logo-color.png";
 import {
@@ -26,13 +27,30 @@ import {
 import { BiUser } from "react-icons/bi";
 import { FiSearch } from "react-icons/fi";
 import { BsBag } from "react-icons/bs";
+import {FaMoon, FaSun} from "react-icons/fa"
 import { Link as RouterLink } from "react-router-dom";
+import { useUserAuth } from "../context/UserAuthContext";
+import { useSelector } from "react-redux";
+import { useState } from "react";
+import SearchProduct from "./SearchProduct";
 
 export default function Nav() {
   const { isOpen, onToggle } = useDisclosure();
+  const singleUser=useSelector((store)=>store.AuthReducer);
+  const [clicked,setClicked] = useState(false);
 
+  // const { toggleColorMode, colorMode } = useColorMode();
+console.log(singleUser);
+
+  const handleClick=()=>{
+    setClicked(!clicked)
+  }
+
+  
   return (
-    <Box>
+    <div>
+
+<Box borderBottom="1px solid #56B7C3">
       <Flex
         bg={useColorModeValue("white", "gray.800")}
         color={useColorModeValue("gray.600", "white")}
@@ -57,7 +75,7 @@ export default function Nav() {
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: "flex-start", md: "start" }}>
           <RouterLink to={"/"}>
-            <Image width="80px" height="50px" src={logo} alt="" />
+            <Image ml={{base:"-5"}} width="90px" height="50px" src={logo} alt="" />
           </RouterLink>
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />
@@ -84,9 +102,16 @@ export default function Nav() {
             // display={{ base: "none", md: "inline-flex" }}
             fontSize={"sm"}
             fontWeight={600}
-            href={"#"}>
+            onClick={handleClick}>
             <FiSearch />
           </Button>
+          {/* <IconButton
+        aria-label="toggle theme"
+        rounded="full"
+        size="xs"
+       
+        onClick={toggleColorMode} icon={colorMode === "dark" ? <FaSun /> : <FaMoon />}
+      /> */}
         </Stack>
       </Flex>
 
@@ -94,6 +119,10 @@ export default function Nav() {
         <MobileNav />
       </Collapse>
     </Box>
+    <SearchProduct searchStatus={clicked}/>
+    </div>
+    
+    
   );
 }
 
@@ -390,6 +419,7 @@ const NAV_ITEMS = [
         // subLabel: "Up-and-coming Designers",
         href: "#",
       },
+     
     ],
   },
 ];
