@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Container, Row, Col } from "react-bootstrap";
 import { Routes, Route } from "react-router-dom";
 import { UserAuthContextProvider } from "../context/UserAuthContext";
 import Cart from "../Pages/Cart";
@@ -15,10 +16,9 @@ import ProtectedRoute from "./ProtectedRoute";
 import Signup from "./Signup";
 
 const AllRoutes = () => {
-
   return (
-
     <UserAuthContextProvider>
+
        <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/product" element={<ProductPage />} />
@@ -31,9 +31,10 @@ const AllRoutes = () => {
       < Route path = "/payment" element = {< Payment />} />
       < Route path = "/myorders" element = {< MyOrders />} />
     </Routes >
+
+     
     </UserAuthContextProvider>
-   
-    )
-}
+  );
+};
 
 export default AllRoutes;

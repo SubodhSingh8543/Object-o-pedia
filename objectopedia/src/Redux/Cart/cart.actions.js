@@ -13,31 +13,39 @@ const getCartSuccess = (payload) => {
 	return { type: types.GET_CART_SUCCESS, payload }
 }
 
-const getCart = () => async (dispatch) => {
+const deleteCartSuccess = (payload) => {
+	return { type: types.DELETE_CART_SUCCESS, payload }
+}
+
+const updateCartSuccess = (payload) => {
+	return { type: types.UPDATE_CART_SUCCESS, payload }
+}
+
+const getCart = (id) => async (dispatch) => {
 	dispatch(cartLoading())
 	try {
-		let res = await getCartApi();
+		let res = await getCartApi(id);
 		dispatch(getCartSuccess(res))
 	} catch (e) {
 		dispatch(cartError())
 	}
 }
 
-const deleteCart = (newCart) => async (dispatch) => {
+const deleteCart = (newCart, id) => async (dispatch) => {
 	dispatch(cartLoading())
 	try {
-		let res = await deleteCartApi(newCart);
+		let res = await deleteCartApi(newCart, id);
 		dispatch(getCartSuccess(res))
 	} catch (e) {
 		dispatch(cartError())
 	}
 }
 
-const updateCart = (newCart) => async (dispatch) => {
+const updateCart = (newCart, id) => async (dispatch) => {
 	dispatch(cartLoading())
 	try {
-		let res = await updateCartApi(newCart);
-		dispatch(getCartSuccess(res))
+		let res = await updateCartApi(newCart, id);
+		dispatch(updateCartSuccess(res))
 	} catch (e) {
 		dispatch(cartError())
 	}

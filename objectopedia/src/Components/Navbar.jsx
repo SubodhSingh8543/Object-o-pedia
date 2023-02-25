@@ -48,16 +48,20 @@ console.log(singleUser);
 
   
   return (
-    <div>
 
-<Box borderBottom="1px solid #56B7C3">
+    <div style={{position:"sticky",top:"0%",zIndex:"99"}}>                           
+    <Box  borderBottom="1px solid #56B7C3">
+
       <Flex
+        // position={"fixed"}
         bg={useColorModeValue("white", "gray.800")}
         color={useColorModeValue("gray.600", "white")}
         minH={"60px"}
         py={{ base: 2 }}
         px={{ base: 4 }}
         borderBottom={1}
+        marginBottom={5}
+        width={"100%"}
         borderStyle={"solid"}
         borderColor={useColorModeValue("gray.200", "gray.900")}
         align={"center"}>
@@ -118,11 +122,13 @@ console.log(singleUser);
       <Collapse in={isOpen} animateOpacity>
         <MobileNav />
       </Collapse>
+
     </Box>
     <SearchProduct searchStatus={clicked}/>
     </div>
     
     
+
   );
 }
 
