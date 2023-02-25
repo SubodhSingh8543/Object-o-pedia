@@ -1,6 +1,6 @@
 // import './App.css';
 import { useState } from 'react';
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 // import "./App.css";
 import Home from "./Components/Home";
 import Login from "./Components/Login";
@@ -18,16 +18,18 @@ import Cart from './Pages/Cart';
 import ProductPage from './Pages/ProductPage';
 import Payment from './Pages/Payment';
 import Nav from './Components/Navbar';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginAdminSideFunction } from './Redux/auth/auth.action';
 
 
 function App() {
-  const [athenticated,setAuth] = useState(true);
+  const [athenticated,setAuth] = useState(JSON.parse(localStorage.getItem("adminAuth")));
 
   return (
     <div className="App">
 
 
-      {athenticated? <AdminNavbar/> :(<><Nav/><AllRoutes/></> )}
+      {athenticated === true ? <AdminNavbar/> :(<><Nav/><AllRoutes/></> )};
 
       {/* <AllRoutes/> */}
       {/* <ProductPage/> */}

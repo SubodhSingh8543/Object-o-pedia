@@ -4,7 +4,8 @@ const initialState = {
     isLoading: false,
     isError: false,
     allUsers: [],
-    singleUser: {}
+    singleUser: {},
+    adminAuth: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -24,6 +25,12 @@ const reducer = (state = initialState, action) => {
         }
         case types.Auth_POST_SINGLE_USER_SUCCESS : {
             return {...state, isLoading: false, allUsers:[...state.allUsers,payload]};
+        }
+        case types.AUTH_ADMIN_LOGIN_SUCCESS : {
+            return {...state, isLoading: false, adminAuth:true};
+        }
+        case types.AUTH_ADMIN_LOGOUT_SUCCESS : {
+            return {...state, isLoading: false, adminAuth:false};
         }
         default : {
             return state;

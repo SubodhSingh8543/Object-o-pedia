@@ -1,3 +1,4 @@
+import { async } from "@firebase/util";
 import { getSingleUserDataAPI, getUserDataAPI, postSingleUserDataAPI } from "./auth.api";
 import * as types from "./auth.types";
 
@@ -20,6 +21,14 @@ export const handleGetSingleUserData = (payload) => {
 
 export const handlePostSingleUserData = (payload) => {
     return {type: types.Auth_POST_SINGLE_USER_SUCCESS,payload};
+}
+
+export const handleAdminLogin = () => {
+    return {type: types.AUTH_ADMIN_LOGIN_SUCCESS};
+}
+
+export const handleAdminLogOut = () => {
+    return {type: types.AUTH_ADMIN_LOGOUT_SUCCESS};
 }
 
 export const getUsersData = () => async (dispatch) => {
@@ -62,4 +71,13 @@ export const postSingleUserData = (payload) => async (dispatch) => {
         dispatch(handleGetUsersError())
     }
 
+}
+
+export const loginAdminSideFunction = () =>  (dispatch) => {
+    dispatch(handleGetUsersRequest());
+   
+    dispatch(handleAdminLogin());
+       
+    dispatch(handleGetUsersError())
+    
 }

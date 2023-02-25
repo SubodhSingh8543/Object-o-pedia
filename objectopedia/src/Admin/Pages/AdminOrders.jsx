@@ -86,7 +86,7 @@ const AdminOrders = () => {
                                         <Td>{item.title}</Td>
                                         <Td>{item.category}</Td>
                                         <Td>₹{item.price}</Td>
-                                        <Td>Pending</Td>
+                                        <Td>{item.status ? <Text color={"green"}>Completed</Text>: <Text color={"red"}>Pending</Text>}</Td>
                                         {/* {setPrice(prev => prev + item.price)} */}
                                          {/* <Td> <Flex gap={"10px"} > <AdminShowProductModal /> <AdminEditProductModal /> <AdminDeleteProductModal/> </Flex> </Td> */}
                                     </Tr>

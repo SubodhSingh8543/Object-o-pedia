@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { UserAuthContextProvider } from "../context/UserAuthContext";
+import AdminLogin from "../Pages/AdminLogin";
 import Cart from "../Pages/Cart";
 import Checkout from "../Pages/Checkout";
 // import Home from "../Pages/home";
@@ -29,6 +30,8 @@ const AllRoutes = () => {
       < Route path = "/cart" element = {< Cart />} />
       < Route path = "/payment" element = {< Payment />} />
       < Route path = "/myorders" element = {< MyOrders />} />
+      < Route path = "/adminLogin" element = {< AdminLogin />} />
+      <Route path = "*" element = {<h1>4O4 Error</h1>}/>
     </Routes >
     </UserAuthContextProvider>
    

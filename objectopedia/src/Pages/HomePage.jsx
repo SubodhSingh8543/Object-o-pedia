@@ -9,14 +9,13 @@ const HomePage = () => {
    const data = useSelector((res) => res.AuthReducer.allUsers);
    const singleUserData = useSelector((res) => res.AuthReducer.singleUser);
    const dispatch = useDispatch();
-//    const [userId,setUserId] = useState("");
+   const [userId,setUserId] = useState("");
 
-   console.log(user);
 
    useEffect(() => {
     if(user?.uid){
       dispatch(getUsersData());
-    //   setUserId(user?.uid);
+      setUserId(user?.uid);
       findUser(user?.uid)
     } 
    },[])
@@ -29,7 +28,7 @@ const HomePage = () => {
         active: false,
         name: user.displayName,  
         email: user.email,
-        address: "",
+        address: {},
         id: user.uid,
         cart:[],
         wishlist: [],
@@ -51,8 +50,6 @@ const HomePage = () => {
         console.log("not exist")
        }  
    }
-
-
 
     return(
         <div>
