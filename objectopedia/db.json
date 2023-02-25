@@ -6,7 +6,14 @@
       "name": "Vivek Kumar",
       "email": "vk640890@gmail.com",
       "id": "81bkuZFjGxdzlrsPm6r2Q4Za5xB3",
-      "address": "",
+      "address": {
+        "pincode": "110086",
+        "city": "Delhi",
+        "state": "Delhi",
+        "country": "Japan",
+        "flat": "b-4/67  Prem Nagar Delhi",
+        "area": "Agar Nagar"
+      },
       "cart": [
         {
           "id": 3,

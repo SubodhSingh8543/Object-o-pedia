@@ -4,7 +4,8 @@ import { useUserAuth } from "../context/UserAuthContext";
 const ProtectedRoute = ({ children }) => {
   const { user } = useUserAuth();
   if (!user) {
-    return <Navigate to="/" />;
+    alert("Please login first!")
+    return <Navigate to="/login" />;
   }
   return children;
 };

@@ -11,15 +11,25 @@ import {
     chakra,
    
   } from '@chakra-ui/react';
+import { useState } from 'react';
 import { FiHeart } from 'react-icons/fi';
+import {FcLike} from "react-icons/fc"
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
   
 export default function ProductCard({id,image,name,price,category}) {
  
-  const loading = useSelector((store)=>store.productReducer.loading)
- 
+  const loading = useSelector((store)=>store.productReducer.loading);
+
+  const singleUser = useSelector((store)=>store.AuthReducer.singleUser)
+  
+  const [redHeart,setRedHeart] = useState(false);
+
+  const handleClick =()=> {
+    setRedHeart(!redHeart)
+  }
   // console.log(id)
+  console.log(singleUser)
   
   return (
     <Center py={6}>
@@ -29,7 +39,8 @@ export default function ProductCard({id,image,name,price,category}) {
       p={6}
       maxW={'290px'}
       w={'full'}
-      boxShadow={'2xl'}
+      boxShadow={'sm'}
+      _hover={{boxShadow:"2xl"}}
       rounded={'lg'}
       pos={'relative'}
       zIndex={1}
@@ -45,8 +56,7 @@ export default function ProductCard({id,image,name,price,category}) {
         >
         <Image
           rounded={'lg'}
-          height={230}
-          width={250}
+          
           objectFit={'cover'}
           src={image}
         />
@@ -88,8 +98,9 @@ export default function ProductCard({id,image,name,price,category}) {
           placement={'top'}
           color={'gray.800'}
           fontSize={'1em'}>
-          <chakra.a href={'#'} display={'flex'}>
-            <Icon as={FiHeart}  h={"20px"} w={"20px"} mt="-1" alignSelf={'center'} />
+          <chakra.a  display={'flex'} onClick={handleClick}>
+            {redHeart?<FcLike w={"20px"} h={"20px"} />:<Icon  as={FiHeart} h={"20px"} w={"20px"} mt="-1" alignSelf={'center'} />}
+           
           </chakra.a>
         </Tooltip>
 

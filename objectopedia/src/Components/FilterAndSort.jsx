@@ -42,8 +42,8 @@ const FilterAndSort = () => {
   
 
   return (
-    <div style={{position:"sticky",top:"0px",bottom:"150px"}}>
-      <Box border="1px solid grey" borderRight="8px solid grey " width="90%"
+    <div style={{position:"sticky",top:"0px",bottom:"150px",}}>
+      <Box border="1px solid grey" borderRight="8px solid #56B7C3 " width="90%"
     
   >
         <Heading color="gray.900" opacity="0.7">
@@ -58,7 +58,7 @@ const FilterAndSort = () => {
                   as="span"
                   flex="1"
                   py="1"
-                  fontSize="2em"
+                  fontSize="1.5em"
                   textAlign="left"
                 >
                   Category
@@ -101,7 +101,7 @@ const FilterAndSort = () => {
                   as="span"
                   flex="1"
                   py="1"
-                  fontSize="2em"
+                  fontSize="1.5em"
                   textAlign="left"
                 >
                   Sort
@@ -113,10 +113,10 @@ const FilterAndSort = () => {
               <RadioGroup value={sortVal} onChange={handleSort}>
                 <Stack direction="column">
                   <Radio py="2" color="#000000DE" value="asc">
-                    Asc
+                    Price Low To High
                   </Radio>
                   <Radio color="#000000DE" value="desc">
-                    Desc
+                    Price High To Low
                   </Radio>
                   <Radio color="#000000DE"  value="">
                     Reset

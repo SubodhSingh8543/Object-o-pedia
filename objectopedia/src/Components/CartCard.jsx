@@ -1,13 +1,10 @@
 import { Box, Button, Image, Text } from "@chakra-ui/react";
 import React from "react";
 import { FaRegTrashAlt } from "react-icons/fa";
-import { updateCart } from "../Redux/Cart/cart.actions";
-import { useDispatch } from "react-redux";
 
 const CartCard = ({
   title,
   price,
-  description,
   image,
   deleteHandler,
   incHandler,
@@ -17,7 +14,7 @@ const CartCard = ({
 }) => {
   return (
     <Box mb={"1rem"}>
-      <Box w={"60%"} m={"auto"} display={"flex"} gap={"2rem"}>
+      <Box w={"50%"} ml={"9rem"} display={"flex"} gap={"2rem"}>
         <Box bg={"#f7f7f7"}>
           <Image w={"80%"} src={image} />
         </Box>
@@ -44,6 +41,7 @@ const CartCard = ({
                 w={"2rem"}
                 onClick={() => decHandler(id)}
                 variant={"ghost"}
+                disabled={qty === 1}
               >
                 -
               </Button>
