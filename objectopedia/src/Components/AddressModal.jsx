@@ -5,33 +5,57 @@ import {
   FormControl,
   FormLabel,
   HStack,
-  Heading,
   Input,
-  InputGroup,
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalFooter,
   ModalHeader,
   ModalOverlay,
   Stack,
-  Text,
   useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { updateAddress } from "../Redux/checkout/checkout.actions";
+import { useUserAuth } from "../context/UserAuthContext";
 
 function AddressModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const singleUserData = useSelector((res) => res.AuthReducer.singleUser);
+  const { user } = useUserAuth();
+  const dispatch = useDispatch();
+  const [pincode, setPincode] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [country, setCountry] = useState("");
+  const [flat, setFlat] = useState("");
+  const [area, setArea] = useState("");
+
+  const handleUpdateAddress = () => {
+    const newAddress = {
+      pincode,
+      city,
+      state,
+      country,
+      flat,
+      area,
+    };
+    if (singleUserData) {
+      dispatch(updateAddress(newAddress, user.uid));
+    }
+  };
+
   return (
     <>
-      <Button onClick={onOpen} color={"green.500"} w={"20%"}>
-        <ul>Change</ul>
+      <Button onClick={onOpen} color={"green.500"} w={"25%"}>
+        <ul>{singleUserData.address ? "Change" : "Add Address"}</ul>
       </Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent overflow={'hidden'} overflowY={'scroll'} maxH={'30rem'}>
+        <ModalContent overflow={"hidden"} overflowY={"scroll"} maxH={"30rem"}>
           <ModalHeader>ADD NEW ADDRESS</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
@@ -50,57 +74,69 @@ function AddressModal() {
                   <Stack spacing={4}>
                     <HStack>
                       <Box>
-                        <FormControl id="firstName" isRequired>
-                          <FormLabel>Full Name</FormLabel>
-                          <Input type="text"  />
-                        </FormControl>
-                      </Box>
-                      <Box>
-                        <FormControl id="lastName" isRequired>
-                          <FormLabel>Mobile</FormLabel>
-                          <Input type="number" />
-                        </FormControl>
-                      </Box>
-                    </HStack>
-                    <FormControl id="email" isRequired>
-                      <FormLabel>Email address</FormLabel>
-                      <Input type="email" />
-                    </FormControl>
-                    <HStack>
-                      <Box>
-                        <FormControl id="firstName" isRequired>
+                        <FormControl id="pincode">
                           <FormLabel>Pincode</FormLabel>
-                          <Input type="number"  />
+                          <Input
+                            type="number"
+                            placeholder="pincode"
+                            value={pincode}
+                            onChange={(e) => setPincode(e.target.value)}
+                          />
                         </FormControl>
                       </Box>
                       <Box>
                         <FormControl id="lastName" isRequired>
                           <FormLabel>City</FormLabel>
-                          <Input type="text" />
+                          <Input
+                            type="text"
+                            placeholder="city"
+                            value={city}
+                            onChange={(e) => setCity(e.target.value)}
+                          />
                         </FormControl>
                       </Box>
                     </HStack>
-										<HStack>
+                    <HStack>
                       <Box>
-                        <FormControl id="firstName" isRequired>
+                        <FormControl isRequired>
                           <FormLabel>State</FormLabel>
-                          <Input type="text"  />
+                          <Input
+                            type="text"
+                            placeholder="state"
+                            value={state}
+                            onChange={(e) => setState(e.target.value)}
+                          />
                         </FormControl>
                       </Box>
                       <Box>
-                        <FormControl id="lastName" isRequired>
+                        <FormControl isRequired>
                           <FormLabel>Country</FormLabel>
-                          <Input type="text" />
+                          <Input
+                            type="text"
+                            placeholder="country"
+                            value={country}
+                            onChange={(e) => setCountry(e.target.value)}
+                          />
                         </FormControl>
                       </Box>
                     </HStack>
-										<FormControl id="email" isRequired>
+                    <FormControl isRequired>
                       <FormLabel>Flat No./building, street name</FormLabel>
-                      <Input type="email" />
+                      <Input
+                        type="text"
+                        placeholder="flat"
+                        value={flat}
+                        onChange={(e) => setFlat(e.target.value)}
+                      />
                     </FormControl>
-										<FormControl id="email" isRequired>
+                    <FormControl isRequired>
                       <FormLabel>Area/Locality</FormLabel>
-                      <Input type="email" />
+                      <Input
+                        type="text"
+                        placeholder="area"
+                        value={area}
+                        onChange={(e) => setArea(e.target.value)}
+                      />
                     </FormControl>
                     <Stack spacing={10} pt={2}>
                       <Button
@@ -111,6 +147,7 @@ function AddressModal() {
                         _hover={{
                           bg: "blue.500",
                         }}
+                        onClick={handleUpdateAddress}
                       >
                         Add Address
                       </Button>
@@ -120,7 +157,6 @@ function AddressModal() {
               </Stack>
             </Flex>
           </ModalBody>
-
         </ModalContent>
       </Modal>
     </>

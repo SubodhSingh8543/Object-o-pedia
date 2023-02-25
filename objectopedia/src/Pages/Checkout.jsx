@@ -6,44 +6,28 @@ import {
   Heading,
   Image,
   Text,
-  useToast,
 } from "@chakra-ui/react";
-import { AiOutlineArrowLeft } from "react-icons";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AddressModal from "../Components/AddressModal";
 import OrderSummary from "../Components/OrderSummary";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useUserAuth } from "../context/UserAuthContext";
+import { getAddress } from "../Redux/checkout/checkout.actions";
 
 const Checkout = () => {
   const cartData = useSelector((store) => store.cartReducer.cart);
+  const checkoutData = useSelector((store) => store.checkoutReducer.address);
+  const { user } = useUserAuth();
   const initSum = 0;
-  const toast = useToast();
+
+  const dispatch = useDispatch();
   let sum = cartData.reduce((acc, ele) => acc + ele.price * ele.qty, initSum);
   const [couponDiscount, setCouponDiscount] = useState(0);
-  const availCoupon = (coupon) => {
-    if (coupon === "trinity") {
-      setCouponDiscount(Math.floor(sum / 10));
-      toast({
-        title: "Applied Successfully",
-        description: "You availed discount of 10%",
-        variant: "subtle",
-        status: "success",
-        position: "top-right",
-        duration: 3000,
-        isClosable: true,
-      });
-    } else {
-      toast({
-        title: "Not Valid",
-        description: "You have added wrong coupon",
-        variant: "subtle",
-        status: "error",
-        position: "top-right",
-        duration: 3000,
-        isClosable: true,
-      });
-    }
-  };
+
+  useEffect(() => {
+    dispatch(getAddress(user.uid));
+  }, []);
+  // console.log(userData);
   return (
     <Box>
       <Heading textAlign={"center"} mt={"4rem"} mb={"2rem"}>
@@ -70,9 +54,10 @@ const Checkout = () => {
             >
               <Text fontWeight={"bold"}>SHIPPING ADDRESS</Text>
               <Text>
-                Vivek Kumar,
-                <br /> b-4/67 Agar Nagar Delhi, Prem Nagar
-                <br /> New Delhi, Delhi 110086
+                {checkoutData.flat} <br />
+                {checkoutData.area}, {checkoutData.state},{" "}
+                {checkoutData.pincode}
+                ,<br /> {checkoutData.city}, {checkoutData.country} <br />
               </Text>
               <Divider mt={"1rem"} mb={"1rem"} />
               <AddressModal />
@@ -87,7 +72,7 @@ const Checkout = () => {
           </Box>
         </Box>
         <Box h={{ md: "25rem" }} w={{ md: "50%" }}>
-        <OrderSummary
+          <OrderSummary
             totalItem={cartData.length}
             sum={sum}
             couponDiscount={couponDiscount}
