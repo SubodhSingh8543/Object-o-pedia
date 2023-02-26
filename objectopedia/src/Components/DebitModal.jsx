@@ -18,13 +18,20 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import React from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useUserAuth } from "../context/UserAuthContext";
+import { deleteCartApi } from "../Redux/Cart/cart.api";
 
-const DebitModal = () => {
+const DebitModal = ({ addtoOrders }) => {
+  const cartData = useSelector((store) => store.cartReducer.cart);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { user } = useUserAuth();
   const navigate = useNavigate();
   const toast = useToast();
   const payWithCard = () => {
+    addtoOrders(cartData);
+    console.log(cartData);
     navigate("/");
     toast({
       title: "Payment Done",
