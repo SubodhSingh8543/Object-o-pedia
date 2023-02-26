@@ -10,6 +10,16 @@ export const getAddressApi = async (id) => {
 	}
 }
 
+export const getOrdersApi = async (id) => {
+	try {
+		let res = await axios.get(`https://dataobj.onrender.com/users/${id}`);
+		let data = await res.data.orders;
+		return data;
+	} catch (e) {
+		console.log(e);
+	}
+}
+
 
 export const addAddressApi = async (newAddress, id) => {
 	try {
@@ -32,6 +42,7 @@ export const addtoOrdersApi = async (newOrders, id) => {
 		console.log(e);
 	}
 }
+
 
 
 export const updateAddressApi = async (newAddress, id) => {

@@ -418,7 +418,7 @@ const NAV_ITEMS = [
       {
         label: "Orders",
         // subLabel: "Trending Design to inspire you",
-        // href: "/myorders",
+        href: "/myorders",
       },
       {
         label: "Wish List",
