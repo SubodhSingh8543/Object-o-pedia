@@ -21,11 +21,9 @@ const HomePage = () => {
    const singleUserData = useSelector((res) => res.AuthReducer.singleUser);
    const dispatch = useDispatch();
    const [userId,setUserId] = useState("");
-
-
+      
    useEffect(() => {
     if(user?.uid){
-    
       dispatch(getUsersData());
 
       setUserId(user?.uid);
@@ -38,12 +36,12 @@ const HomePage = () => {
     let flag = false
 
     let userObject = {
-        profile: user.photoURL,
+        profile: user?.photoURL,
         active: false,
-        name: user.displayName,  
-        email: user.email,
+        name: user?.displayName,  
+        email: user?.email,
         address: {},
-        id: user.uid,
+        id: user?.uid,
         cart:[],
         wishlist: [],
         orders: []
@@ -58,10 +56,10 @@ const HomePage = () => {
       if(flag === true){
         dispatch(getSingleUserData(id));
         console.log("exist")
-        console.log(singleUserData);
+       
       }else{
         dispatch(postSingleUserData(userObject));
-        console.log(data);
+      
         console.log("not exist")
        }
    }

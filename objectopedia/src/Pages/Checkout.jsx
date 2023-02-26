@@ -13,6 +13,7 @@ import OrderSummary from "../Components/OrderSummary";
 import { useDispatch, useSelector } from "react-redux";
 import { useUserAuth } from "../context/UserAuthContext";
 import { getAddress } from "../Redux/checkout/checkout.actions";
+import { Link } from "react-router-dom";
 
 const Checkout = () => {
   const cartData = useSelector((store) => store.cartReducer.cart);
@@ -54,10 +55,10 @@ const Checkout = () => {
             >
               <Text fontWeight={"bold"}>SHIPPING ADDRESS</Text>
               <Text>
-                {checkoutData.flat} <br />
-                {checkoutData.area}, {checkoutData.state},{" "}
-                {checkoutData.pincode}
-                ,<br /> {checkoutData.city}, {checkoutData.country} <br />
+                {checkoutData?.flat} <br />
+                {checkoutData?.area}, {checkoutData?.state},{" "}
+                {checkoutData?.pincode}
+                ,<br /> {checkoutData?.city}, {checkoutData?.country} <br />
               </Text>
               <Divider mt={"1rem"} mb={"1rem"} />
               <AddressModal />
@@ -67,13 +68,13 @@ const Checkout = () => {
                 w={"18%"}
                 src="https://images.dailyobjects.com/icons/back%20arrow.png"
               />
-              <ul>Go Back</ul>
+              <Link to="/cart"><ul>Go Back</ul></Link>
             </Button>
           </Box>
         </Box>
         <Box h={{ md: "25rem" }} w={{ md: "50%" }}>
           <OrderSummary
-            totalItem={cartData.length}
+            totalItem={cartData?.length}
             sum={sum}
             couponDiscount={couponDiscount}
           />

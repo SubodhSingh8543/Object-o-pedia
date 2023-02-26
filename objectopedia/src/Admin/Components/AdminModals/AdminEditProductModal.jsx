@@ -95,7 +95,7 @@ export const AdminEditProductModal = ({el}) => {
                     </ModalBody>
                     <ModalFooter>
                         <Flex justifyContent={"space-between"} gap={"8px"}>
-                            <Button bg={"red"} color="white" onClick={onClose}>Cance</Button>
+                            <Button bg={"red"} color="white" onClick={onClose}>Cancel</Button>
                             <Button bg={"#0072ba"} color="white" onClick={handleUpdate}>Update</Button>
                         </Flex>
                     </ModalFooter>

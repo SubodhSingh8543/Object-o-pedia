@@ -21,6 +21,7 @@ const reducer = (state = initialState, action) => {
             return {...state, isLoading: false, isError: true};
         }
         case types.AUTH_GET_SINGLE_USER_SUCCESS : {
+            console.log(payload)
             return {...state, isLoading: false, singleUser: payload};
         }
         case types.Auth_POST_SINGLE_USER_SUCCESS : {

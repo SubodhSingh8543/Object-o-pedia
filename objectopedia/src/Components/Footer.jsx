@@ -53,7 +53,7 @@ import {
           <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={8}>
             <Stack align={"flex-start"}>
               <ListHeader> <p style={{fontSize:"25px"}}>KNOW US</p></ListHeader>
-              <Link href={"#"}>About DailyObjects</Link>
+              <Link href={"#"}>About ObjectoPedia</Link>
               <Link href={"#"}>Blog</Link>
             </Stack>
   

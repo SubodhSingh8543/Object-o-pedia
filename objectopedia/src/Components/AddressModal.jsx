@@ -15,6 +15,7 @@ import {
   Stack,
   useColorModeValue,
   useDisclosure,
+  useToast,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -32,7 +33,7 @@ function AddressModal() {
   const [country, setCountry] = useState("");
   const [flat, setFlat] = useState("");
   const [area, setArea] = useState("");
-
+  const toast = useToast();
   const handleUpdateAddress = () => {
     const newAddress = {
       pincode,
@@ -44,6 +45,16 @@ function AddressModal() {
     };
     if (singleUserData) {
       dispatch(updateAddress(newAddress, user.uid));
+      toast({
+        title: "Address updated",
+        description: "Address has been saved",
+        variant: "subtle",
+        status: "success",
+        position: "top-right",
+        duration: 3000,
+        isClosable: true,
+      });
+      onClose();
     }
   };
 

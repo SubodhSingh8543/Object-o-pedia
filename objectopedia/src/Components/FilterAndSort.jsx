@@ -42,7 +42,7 @@ const FilterAndSort = () => {
   
 
   return (
-    <div style={{position:"sticky",top:"0px",bottom:"150px",}}>
+    <div style={{position:"sticky",top:"60px",bottom:"150px",}}>
       <Box border="1px solid grey" borderRight="8px solid #56B7C3 " width="90%"
     
   >

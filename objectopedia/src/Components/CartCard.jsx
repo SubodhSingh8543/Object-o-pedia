@@ -41,7 +41,7 @@ const CartCard = ({
                 w={"2rem"}
                 onClick={() => decHandler(id)}
                 variant={"ghost"}
-                disabled={qty === 1}
+                isDisabled={qty === 1}
               >
                 -
               </Button>

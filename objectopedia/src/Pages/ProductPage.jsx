@@ -40,20 +40,16 @@ const ProductPage = () => {
     },[location.search]);
 
     return (
-      <div>
-        <Flex >
+      <div >
+        <Flex w={{base:"100%",md:"100%",lg:"100%"}} >
 
-           <Box w="25%" mt="4" display={{base:"none",md:"none",lg:"block"}}>
+           <Box minW="300px" display={{base:"none",md:"none",lg:"block"}}>
            <FilterAndSort/>
            </Box>
-           <Box margin={{base:"auto",md:"auto",lg:"auto"}} mt={{base:"2",md:"5"}}>
-           <SimpleGrid templateColumns={{
-                base: "repeat(1, 1fr)",
-                md: "repeat(2, 1fr)",
-                lg: "repeat(4, 1fr)",
-              }}
-              rowGap={"-50px"}
-              columnGap={10}
+           <Box margin={{base:"auto",md:"auto",lg:"auto"}} mt={{base:"1",md:"5"}}>
+           <Flex flexWrap={"wrap"} justifyContent="center"
+              
+              gap={7}
              >
                 {products.length > 0 &&
                 products
@@ -77,7 +73,7 @@ const ProductPage = () => {
                     </Box>
                    
                   ))}
-            </SimpleGrid>
+            </Flex>
             
           </Box>
           

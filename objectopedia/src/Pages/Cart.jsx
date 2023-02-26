@@ -19,13 +19,13 @@ const Cart = () => {
   const dispatch = useDispatch();
   const initSum = 0;
   const toast = useToast();
-  let sum = cartData.reduce((acc, ele) => acc + ele.price * ele.qty, initSum);
+  let sum = cartData?.reduce((acc, ele) => acc + ele.price * ele.qty, initSum);
   const [couponDiscount, setCouponDiscount] = useState(0);
   const { user } = useUserAuth();
  
   
   const availCoupon = (coupon) => {
-    if (coupon === "trinity") {
+    if (coupon === "obj10") {
       setCouponDiscount(Math.floor(sum / 10));
       toast({
         title: "Applied Successfully",
@@ -50,7 +50,7 @@ const Cart = () => {
   };
 
   const deleteHandler = (id) => {
-    let newCart = cartData.filter((ele) => {
+    let newCart = cartData?.filter((ele) => {
       return ele.id !== id;
     });
     if (user?.uid) {
@@ -68,7 +68,7 @@ const Cart = () => {
   };
 
   const incHandler = (id) => {
-    let newCart = cartData.map((ele) => {
+    let newCart = cartData?.map((ele) => {
       return ele.id === id ? { ...ele, qty: ++ele.qty } : ele;
     });
     if (user?.uid) {
@@ -77,7 +77,7 @@ const Cart = () => {
   };
 
   const decHandler = (id) => {
-    let newCart = cartData.map((ele) => {
+    let newCart = cartData?.map((ele) => {
       return ele.id === id ? { ...ele, qty: --ele.qty } : ele;
     });
     if (user?.uid) {
