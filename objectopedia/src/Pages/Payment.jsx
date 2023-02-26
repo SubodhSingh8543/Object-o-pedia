@@ -3,12 +3,17 @@ import React, { useState } from "react";
 import OrderSummary from "../Components/OrderSummary";
 import { useSelector } from "react-redux";
 import DebitModal from "../Components/DebitModal";
+import { addtoOrdersApi } from "../Redux/checkout/checkout.api";
 
 const Payment = () => {
   const cartData = useSelector((store) => store.cartReducer.cart);
   const initSum = 0;
   let sum = cartData.reduce((acc, ele) => acc + ele.price * ele.qty, initSum);
   const [couponDiscount, setCouponDiscount] = useState(0);
+
+  const addtoOrders = (newOrders) => {
+    addtoOrdersApi(newOrders)
+  }
 
   return (
     <Box>
@@ -34,7 +39,7 @@ const Payment = () => {
           <Box w={"60%"} m={"auto"}>
             <Text fontWeight={"bold"}>PAYMENT METHOD</Text>
             <Box bg={"#f7f7f7"} color={"green.500"} mt={"2rem"} p={"1rem"}>
-              <DebitModal />
+              <DebitModal addtoOrders={addtoOrders} />
               <Box display={"flex"} gap={"1"}>
                 <Box>
                   <Image src="https://images.dailyobjects.com/marche/icons/payments/amex-1.png?tr=cm-pad_resize,v-2,w-27,h-27,dpr-1" />

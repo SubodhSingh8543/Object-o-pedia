@@ -21,6 +21,18 @@ export const addAddressApi = async (newAddress, id) => {
 	}
 }
 
+export const addtoOrdersApi = async (newOrders, id) => {
+	try {
+		let res = await axios.patch(`https://dataobj.onrender.com/users/${id}`, {
+			orders: newOrders
+		});
+		let data = await res.data.orders;
+		return data;
+	} catch (e) {
+		console.log(e);
+	}
+}
+
 
 export const updateAddressApi = async (newAddress, id) => {
 	try {
