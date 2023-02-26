@@ -263,9 +263,10 @@ const DesktopNav = () => {
 };
 
 const DesktopSubNav = ({ label, href, subLabel }) => {
+
   return (
-    <Link
-      href={href}
+    <RouterLink
+      to={href}
       role={"group"}
       display={"block"}
       p={2}
@@ -292,7 +293,7 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
           <Icon color={"green.400"} w={5} h={5} as={ChevronRightIcon} />
         </Flex>
       </Stack>
-    </Link>
+    </RouterLink>
   );
 };
 
@@ -366,7 +367,7 @@ const NAV_ITEMS = [
       {
         label: "All Items",
         subLabel: "Trending Design to inspire you",
-        to: "/product",
+        href: "/product",
       },
       {
         label: "Charging Solutions",
