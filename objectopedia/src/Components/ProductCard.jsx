@@ -32,7 +32,7 @@ export default function ProductCard({id,image,name,price,category}) {
   console.log(singleUser)
   
   return (
-    <Center py={6}>
+    <Center py={3}>
         
     <Box
       role={'group'}

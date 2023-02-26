@@ -10,8 +10,10 @@ import { deleteCartApi } from "../Redux/Cart/cart.api";
 const Payment = () => {
   const cartData = useSelector((store) => store.cartReducer.cart);
   const initSum = 0;
+
   const { user } = useUserAuth();
-  let sum = cartData.reduce((acc, ele) => acc + ele.price * ele.qty, initSum);
+  let sum = cartData?.reduce((acc, ele) => acc + ele.price * ele.qty, initSum);
+
   const [couponDiscount, setCouponDiscount] = useState(0);
   const [orders, setOrders] = useState([]);
 
@@ -85,7 +87,7 @@ const Payment = () => {
           overflowY={{ md: "scroll" }}
         >
           <OrderSummary
-            totalItem={cartData.length}
+            totalItem={cartData?.length}
             sum={sum}
             couponDiscount={couponDiscount}
           />

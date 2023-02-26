@@ -37,7 +37,7 @@ import { useEffect, useState } from 'react';
 import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
 import { MdLocalShipping } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { useUserAuth } from '../context/UserAuthContext';
 import { getUserDataAPI } from '../Redux/auth/auth.api';
 import { getSingleProductData } from '../Redux/SingleProduct/singleProduct.action';
@@ -59,7 +59,7 @@ export default function SingleProductPage() {
     }, [])
 
     useEffect(() => {
-        getUserDataAPI(user.uid)
+        getUserDataAPI(user?.uid)
     }, [user])
 
     const getUserDataAPI = async (id) => {
@@ -71,7 +71,7 @@ export default function SingleProductPage() {
     }
 
     const addCartItems = async () => {
-        if (user.uid) {
+        if (user?.uid) {
 
             let newData = [...cartData,{ ...data,qty:1}];
             let newPayLoad = { ...user, cart: newData };
@@ -92,6 +92,7 @@ export default function SingleProductPage() {
                 console.log(error);
             }
         }else{
+            navigate("/login")
         }
     }
 
@@ -107,7 +108,7 @@ export default function SingleProductPage() {
                     <Image
                         rounded={'md'}
                         alt={'product image'}
-                        src={data.image}
+                        src={data?.image}
                         fit={'cover'}
                         align={'center'}
                         w={'100%'}
@@ -120,13 +121,13 @@ export default function SingleProductPage() {
                             lineHeight={1.1}
                             fontWeight={600}
                             fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}>
-                            {data.title}
+                            {data?.title}
                         </Heading>
                         <Text
                             color={useColorModeValue('gray.900', 'gray.400')}
                             fontWeight={300}
                             fontSize={'2xl'}>
-                            ${data.price}
+                            ${data?.price}
                         </Text>
                     </Box>
 
@@ -143,7 +144,7 @@ export default function SingleProductPage() {
                                 color={useColorModeValue('gray.500', 'gray.400')}
                                 fontSize={'2xl'}
                                 fontWeight={'300'}>
-                                {data.description}
+                                {data?.description}
                             </Text>
                             {/* <Text fontSize={'lg'}>
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
@@ -190,7 +191,7 @@ export default function SingleProductPage() {
                                     <Text as={'span'} fontWeight={'bold'}>
                                         Category:
                                     </Text>{' '}
-                                    {data.category}
+                                    {data?.category}
                                 </ListItem>
                                 <ListItem>
                                     <Text as={'span'} fontWeight={'bold'}>

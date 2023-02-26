@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 
-import {Button,Box, Stack} from "@chakra-ui/react"
+import {Button,Box, Stack, Flex} from "@chakra-ui/react"
 import { handlePageChange } from "../Redux/product/product.action";
 
 const Pagination = () => {
@@ -37,56 +37,27 @@ const Pagination = () => {
     }
   },[currentPage]);
 
-  const btnArr =totalPages && new Array(totalPages)
-    .fill(0)
-    .map((e, i) => {
-      return (
-        <Button 
-          key={i}
-          mx={{base:"1",md:"3",lg:"3"}}
-          ml={{md:"5"}}
-          onClick={() => handlePage(i + 1)}
-          color={currentPage === i + 1 && "#FFFFFF"}
-          borderRadius={currentPage === i + 1 && "50%"}
-          bg={currentPage === i + 1 && "#56B7C3"}
-        >
-          {i + 1}
-        </Button>
-      );
-    })
   
   return (
     <div style={{marginTop:"50px"}}>
-      <Box w={{base:"80%",md:"65%",lg:"40%"}} margin="auto" ml={{lg:"40%"}} >
-        <Stack direction={{base:"column",md:"row",lg:"row"}}>
-        <Box >
-        {currentPage !== 1 && (
-        <Button 
-          bg="#56B7C3"
-          color="#FFFFFF"
-          onClick={() => handlePage(currentPage - 1)}
-        >
-          Previous
-        </Button>
-      )}
-        </Box>
-      <Box w={{base:"90%",md:"80%",lg:"60%"}} >
-      {btnArr}
-      </Box>
-      <Box textAlign={{base:"right"}}>
-      {currentPage !== totalPages && (
-        <Button
-          
-          bg="#56B7C3"
-          color="#FFFFFF"
-          onClick={() => handlePage(currentPage + 1)}
-        >
-          Next
-        </Button>
-      )}
-      </Box>
-        </Stack>
-      </Box>
+     
+     <Flex gap={3} justifyContent={"center"}>
+        <Button  isDisabled={activePage===1} onClick={() => handlePage(activePage - 1)}>Prev</Button>
+        {'...'}
+        {Array(totalPages).fill('')
+        .map((item, index) => {
+            return <Button colorScheme={activePage === index + 1 ? 'cyan' : 'gray'} borderRadius={activePage === index + 1&&"50%"}
+            onClick={() => handlePageChange(index + 1)}
+             key={index}>{index + 1}</Button>
+        })
+        .filter((item, index) => {
+           if(index < activePage + 2 && index > activePage - 2 ) return true
+           return false
+        })
+        }
+        { "..."}
+        <Button  isDisabled={activePage===totalPages} onClick={() => handlePage(activePage + 1)}>Next</Button>
+    </Flex>
     </div>
   );
 };
