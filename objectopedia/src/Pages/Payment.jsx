@@ -1,19 +1,37 @@
 import { Box, Divider, Heading, Image, Text } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import OrderSummary from "../Components/OrderSummary";
 import { useSelector } from "react-redux";
 import DebitModal from "../Components/DebitModal";
-import { addtoOrdersApi } from "../Redux/checkout/checkout.api";
+import { addtoOrdersApi, getOrdersApi } from "../Redux/checkout/checkout.api";
+import { useUserAuth } from "../context/UserAuthContext";
+import { deleteCartApi } from "../Redux/Cart/cart.api";
 
 const Payment = () => {
   const cartData = useSelector((store) => store.cartReducer.cart);
   const initSum = 0;
+  const { user } = useUserAuth();
   let sum = cartData.reduce((acc, ele) => acc + ele.price * ele.qty, initSum);
   const [couponDiscount, setCouponDiscount] = useState(0);
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    if (user?.uid) {
+      getOrdersApi(user?.uid).then((res) => {
+        if (res) {
+          setOrders(res);
+        }
+      });
+    }
+  }, []);
 
   const addtoOrders = (newOrders) => {
-    addtoOrdersApi(newOrders)
-  }
+    addtoOrdersApi([...orders, ...newOrders], user?.uid);
+    if (user?.uid) {
+      console.log(user.uid, "user UID");
+      deleteCartApi([], user?.uid);
+    }
+  };
 
   return (
     <Box>

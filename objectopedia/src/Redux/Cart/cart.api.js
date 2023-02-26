@@ -10,7 +10,7 @@ export const getCartApi = async (id) => {
 	}
 }
 
-export const deleteCartApi = async (newCart,id) => {
+export const deleteCartApi = async (newCart, id) => {
 	try {
 		let res = await axios.patch(`https://dataobj.onrender.com/users/${id}`, {
 			cart: newCart
@@ -22,7 +22,7 @@ export const deleteCartApi = async (newCart,id) => {
 	}
 }
 
-export const updateCartApi = async (newCart,id) => {
+export const updateCartApi = async (newCart, id) => {
 	try {
 		let res = await axios.patch(`https://dataobj.onrender.com/users/${id}`, {
 			cart: newCart
